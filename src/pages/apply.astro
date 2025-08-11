@@ -1,0 +1,56 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const role = Astro.url.searchParams.get("role") || "member";
+---
+
+<html lang="en">
+<head>
+    <BaseHead title="Apply" description="Apply for a team position on CommunitySMP" />
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: #00bcd4;
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0097a7;
+        }
+    </style>
+</head>
+<body>
+    <Header />
+
+    <div class="form-container">
+        <h1>Apply for {role.charAt(0).toUpperCase() + role.slice(1)}</h1>
+        <form method="post" action="/submit-application">
+            <input type="text" name="username" placeholder="Minecraft Username" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <textarea name="reason" placeholder="Why do you want to be {role}?" required></textarea>
+            <button type="submit">Send Application</button>
+        </form>
+    </div>
+
+    <Footer />
+</body>
+</html>
