@@ -3,48 +3,115 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const serverIP = "play.communitysmp.de";
+const discordLink = "https://discord.gg/dein-link";
 ---
 
-<!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <style>
+            header {
+                padding: 40px 20px;
+                text-align: center;
+            }
+            h1 {
+                font-size: 3rem;
+                margin: 0;
+            }
+            p {
+                font-size: 1.2rem;
+            }
+            .ip-box {
+                background: rgba(0, 0, 0, 0.4);
+                padding: 15px 30px;
+                display: inline-block;
+                border-radius: 10px;
+                margin-top: 20px;
+                font-size: 1.3rem;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .ip-box:hover {
+                background: rgba(0, 0, 0, 0.6);
+            }
+            section {
+                max-width: 800px;
+                margin: 50px auto;
+                padding: 20px;
+                text-align: center;
+            }
+            h2 {
+                border-bottom: 2px solid #00bcd4;
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+            ul {
+                text-align: left;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            .discord-btn {
+                background: #5865F2;
+                padding: 15px 25px;
+                border-radius: 8px;
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                display: inline-block;
+                margin-top: 20px;
+                transition: 0.3s;
+            }
+            .discord-btn:hover {
+                background: #4752C4;
+            }
+            footer {
+                margin-top: 50px;
+                padding: 20px;
+                font-size: 0.9rem;
+                opacity: 0.7;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <Header />
+
+        <main>
+            <header>
+                <h1>CommunitySMP</h1>
+                <p>Dein Minecraft Server für Spaß, Community & Abenteuer!</p>
+                <div class="ip-box" onclick="navigator.clipboard.writeText('{serverIP}'); alert('IP kopiert!')">
+                    🌐 IP: {serverIP}
+                </div>
+            </header>
+
+            <section>
+                <h2>Regeln</h2>
+                <ul>
+                    <li>Kein Griefing oder Stehlen</li>
+                    <li>Respektvoller Umgang miteinander</li>
+                    <li>Keine Hacks oder unfairen Mods</li>
+                    <li>Baue und habe Spaß!</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Team</h2>
+                <ul>
+                    <li>Owner: DeinName</li>
+                    <li>Co-Owner: ...</li>
+                    <li>Moderatoren: ...</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Community</h2>
+                <a href={discordLink} class="discord-btn">💬 Tritt unserem Discord bei</a>
+            </section>
+        </main>
+
+        <Footer />
+    </body>
 </html>
