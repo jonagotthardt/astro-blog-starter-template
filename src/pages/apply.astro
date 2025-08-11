@@ -46,7 +46,7 @@ const role = Astro.url.searchParams.get("role") || "member";
         <form method="post" action="/submit-application">
             <input type="text" name="username" placeholder="Minecraft Username" required />
             <input type="email" name="email" placeholder="Email Address" required />
-            <textarea name="reason" placeholder="Why do you want to be {role}?" required></textarea>
+            <textarea name="reason" placeholder="Why do you want to be a {role}?" required></textarea>
             <button type="submit">Send Application</button>
         </form>
     </div>
