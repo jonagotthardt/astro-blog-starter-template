@@ -8,7 +8,7 @@ const serverIP = "communitysmp.de";
 const discordLink = "https://discord.gg/Js3c3ynRRd";
 ---
 
-<html lang="de">
+<html lang="en">
 <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
@@ -99,20 +99,20 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
     <main>
         <header>
             <h1>CommunitySMP</h1>
-            <p>Dein Minecraft Server für Spaß, Community & Abenteuer!</p>
-            <div class="ip-box" id="copyIP">
-                🌐 IP: communitysmp.de
-                <span class="copy-popup" id="copyPopup">IP kopiert!</span>
+            <p>Your Minecraft server for fun, community & adventures!</p>
+            <div class="ip-box" id="copyIP" data-ip={serverIP}>
+                🌐 IP: {serverIP}
+                <span class="copy-popup" id="copyPopup">IP copied!</span>
             </div>
         </header>
 
         <section>
-            <h2>Regeln</h2>
+            <h2>Rules</h2>
             <ul>
-                <li>Kein Griefing oder Stehlen</li>
-                <li>Respektvoller Umgang miteinander</li>
-                <li>Keine Hacks oder unfairen Mods</li>
-                <li>Baue und habe Spaß!</li>
+                <li>No griefing or stealing</li>
+                <li>Be respectful to others</li>
+                <li>No hacks or unfair mods</li>
+                <li>Build and have fun!</li>
             </ul>
         </section>
 
@@ -120,14 +120,14 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             <h2>Team</h2>
             <ul>
                 <li>Owner: Jona Gotthardt</li>
-                <li>Admin: !!Bewirb dich als Admin!!</li>
-                <li>Moderatoren: !!Bewirb dich als Moderator!!</li>
+                <li>Admin: Apply now!</li>
+                <li>Moderators: Apply now!</li>
             </ul>
         </section>
 
         <section>
             <h2>Community</h2>
-            <a href={discordLink} class="discord-btn">💬 Tritt unserem Discord bei</a>
+            <a href={discordLink} class="discord-btn">💬 Join our Discord</a>
         </section>
     </main>
 
@@ -138,12 +138,13 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
         const popup = document.getElementById("copyPopup");
 
         copyBtn.addEventListener("click", async () => {
+            const ip = copyBtn.getAttribute("data-ip");
             try {
-                await navigator.clipboard.writeText("{serverIP}");
+                await navigator.clipboard.writeText(ip);
                 popup.classList.add("show");
                 setTimeout(() => popup.classList.remove("show"), 1500);
             } catch (err) {
-                console.error("Fehler beim Kopieren: ", err);
+                console.error("Error copying IP: ", err);
             }
         });
     </script>
