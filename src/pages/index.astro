@@ -4,114 +4,148 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-const serverIP = "play.communitysmp.de";
-const discordLink = "https://discord.gg/dein-link";
+const serverIP = "communitysmp.de";
+const discordLink = "https://discord.gg/Js3c3ynRRd";
 ---
 
-<html lang="en">
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-        <style>
-            header {
-                padding: 40px 20px;
-                text-align: center;
-            }
-            h1 {
-                font-size: 3rem;
-                margin: 0;
-            }
-            p {
-                font-size: 1.2rem;
-            }
-            .ip-box {
-                background: rgba(0, 0, 0, 0.4);
-                padding: 15px 30px;
-                display: inline-block;
-                border-radius: 10px;
-                margin-top: 20px;
-                font-size: 1.3rem;
-                cursor: pointer;
-                transition: 0.3s;
-            }
-            .ip-box:hover {
-                background: rgba(0, 0, 0, 0.6);
-            }
-            section {
-                max-width: 800px;
-                margin: 50px auto;
-                padding: 20px;
-                text-align: center;
-            }
-            h2 {
-                border-bottom: 2px solid #00bcd4;
-                display: inline-block;
-                padding-bottom: 5px;
-            }
-            ul {
-                text-align: left;
-                display: inline-block;
-                margin-top: 10px;
-            }
-            .discord-btn {
-                background: #5865F2;
-                padding: 15px 25px;
-                border-radius: 8px;
-                text-decoration: none;
-                color: white;
-                font-weight: bold;
-                display: inline-block;
-                margin-top: 20px;
-                transition: 0.3s;
-            }
-            .discord-btn:hover {
-                background: #4752C4;
-            }
-            footer {
-                margin-top: 50px;
-                padding: 20px;
-                font-size: 0.9rem;
-                opacity: 0.7;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <Header />
+<html lang="de">
+<head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        .ip-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 30px;
+            display: inline-block;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+        .ip-box:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .copy-popup {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00bcd4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .copy-popup.show {
+            opacity: 1;
+        }
+        section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 2px solid #00bcd4;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        ul {
+            text-align: left;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .discord-btn {
+            background: #5865F2;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .discord-btn:hover {
+            background: #4752C4;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <Header />
 
-        <main>
-            <header>
-                <h1>CommunitySMP</h1>
-                <p>Dein Minecraft Server für Spaß, Community & Abenteuer!</p>
-                <div class="ip-box" onclick="navigator.clipboard.writeText('{serverIP}'); alert('IP kopiert!')">
-                    🌐 IP: {serverIP}
-                </div>
-            </header>
+    <main>
+        <header>
+            <h1>CommunitySMP</h1>
+            <p>Dein Minecraft Server für Spaß, Community & Abenteuer!</p>
+            <div class="ip-box" id="copyIP">
+                🌐 IP: {serverIP}
+                <span class="copy-popup" id="copyPopup">IP kopiert!</span>
+            </div>
+        </header>
 
-            <section>
-                <h2>Regeln</h2>
-                <ul>
-                    <li>Kein Griefing oder Stehlen</li>
-                    <li>Respektvoller Umgang miteinander</li>
-                    <li>Keine Hacks oder unfairen Mods</li>
-                    <li>Baue und habe Spaß!</li>
-                </ul>
-            </section>
+        <section>
+            <h2>Regeln</h2>
+            <ul>
+                <li>Kein Griefing oder Stehlen</li>
+                <li>Respektvoller Umgang miteinander</li>
+                <li>Keine Hacks oder unfairen Mods</li>
+                <li>Baue und habe Spaß!</li>
+            </ul>
+        </section>
 
-            <section>
-                <h2>Team</h2>
-                <ul>
-                    <li>Owner: DeinName</li>
-                    <li>Co-Owner: ...</li>
-                    <li>Moderatoren: ...</li>
-                </ul>
-            </section>
+        <section>
+            <h2>Team</h2>
+            <ul>
+                <li>Owner: Jona Gotthardt</li>
+                <li>Admin: !!Bewirb dich als Admin!!</li>
+                <li>Moderatoren: !!Bewirb dich als Moderator!!</li>
+            </ul>
+        </section>
 
-            <section>
-                <h2>Community</h2>
-                <a href={discordLink} class="discord-btn">💬 Tritt unserem Discord bei</a>
-            </section>
-        </main>
+        <section>
+            <h2>Community</h2>
+            <a href={discordLink} class="discord-btn">💬 Tritt unserem Discord bei</a>
+        </section>
+    </main>
 
-        <Footer />
-    </body>
+    <Footer />
+
+    <script>
+        const copyBtn = document.getElementById("copyIP");
+        const popup = document.getElementById("copyPopup");
+
+        copyBtn.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText("{serverIP}");
+                popup.classList.add("show");
+                setTimeout(() => popup.classList.remove("show"), 1500);
+            } catch (err) {
+                console.error("Fehler beim Kopieren: ", err);
+            }
+        });
+    </script>
+</body>
 </html>
