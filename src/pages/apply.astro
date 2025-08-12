@@ -22,7 +22,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
         <label>
           Alter:
-          <input type="number" name="age" min="10" max="99" required>
+          <input type="number" name="number" min="10" max="99" required>
         </label>
 
         <label>
@@ -46,8 +46,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
        </label>
         
        <label>
-         Zu welchen Uhrzeiten bist du Verfügbar?
-         <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
+         Zu welchen Uhrzeiten bist du Verfügbar?<br>
+         Von <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
+       </label>
+
+       <label>
+         <br> Bis <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
        </label>
 
         <label>
