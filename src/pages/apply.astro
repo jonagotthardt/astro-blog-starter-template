@@ -39,10 +39,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
           Erfahrung mit Minecraft-Servern:
           <textarea name="experience" rows="4"></textarea>
         </label>
+ 
+       <label>
+          An welchen Tagen der Woche kannst du Helfen?
+          <input type="days" name="days" rows="7" placeholder="z.B. Montags, Mittwochs, Freitags..." required>
+       </label>
+        
+       <label>
+         Zu welchen Uhrzeiten bist du Verfügbar?
+         <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
+       </label>
 
         <label>
           Dein Discord-Tag:
           <input type="text" name="discord" placeholder="z.B. Spieler#1234" required>
+        </label>
+
+        <label>
+          Deine E-Mail Adresse:
+          <input type="text" name="mail" placeholder="Deine Mail Adresse" required>
         </label>
 
         <button type="submit" style="margin-top: 1rem;">Bewerbung absenden</button>
