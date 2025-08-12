@@ -84,12 +84,27 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
         .discord-btn:hover {
             background: #4752C4;
         }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            text-align: center;
+        /* Modern look for About Section */
+        .about-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .about-section h3 {
+            color: #00bcd4;
+            margin-top: 20px;
+        }
+        .about-section ul, .about-section ol {
+            margin-left: 20px;
+        }
+        .about-section strong {
+            color: #fff;
+        }
+        .emoji-title {
+            font-size: 1.4rem;
         }
     </style>
 </head>
@@ -128,6 +143,45 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
         <section>
             <h2>Community</h2>
             <a href={discordLink} class="discord-btn">💬 Join our Discord</a>
+        </section>
+
+        <!-- New Modern About Section -->
+        <section class="about-section">
+            <p class="emoji-title">🎮 <strong>Welcome to the CommunitySMP – Free for Everyone!</strong></p>
+            <p>
+                Hey there! 👋 Looking for a fun Minecraft world where <strong>everyone is welcome</strong>,
+                with no payments, no paywalls – just pure survival fun? Then you’ve just found your new home! 🏡
+            </p>
+            <p>
+                Our CommunitySMP is a friendly place for both <strong>Java</strong> and <strong>Bedrock</strong> players to
+                build, explore, and survive together. Whether you want to start a cozy village, go on epic adventures,
+                or just hang out with friends – there’s a place for you here.
+            </p>
+
+            <h3>🌍 Server Details</h3>
+            <ul>
+                <li>✨ <strong>IP:</strong> communitysmp.de</li>
+                <li>✨ <strong>Version:</strong> 1.21.7</li>
+                <li>✨ <strong>Bedrock Port:</strong> 20274</li>
+                <li>✨ Works for Java & Bedrock</li>
+                <li>✨ Type: Survival Multiplayer (SMP) with community rules</li>
+            </ul>
+
+            <h3>🔥 Why join us?</h3>
+            <ul>
+                <li>Completely free – no ranks to buy, no hidden fees</li>
+                <li>A friendly & respectful community</li>
+                <li>Events & group projects to keep things exciting</li>
+                <li>Open 24/7 so you can play whenever you want</li>
+            </ul>
+
+            <h3>⚡ How to Join</h3>
+            <ol>
+                <li>Open Minecraft (Java or Bedrock)</li>
+                <li>Go to “Multiplayer” (Java) or “Servers” (Bedrock)</li>
+                <li>Add our IP address</li>
+                <li>Click “Join” and start your adventure! 🚀</li>
+            </ol>
         </section>
     </main>
 
