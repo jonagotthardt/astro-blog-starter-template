@@ -7,7 +7,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <html lang="de">
   <head>
-    <BaseHead title="Bewerbung - CommunitySMP" description="Bewirb dich jetzt für den CommunitySMP Minecraft Server!" />
+    <BaseHead title="Bewerbung fürs Server Team - CommunitySMP" description="Bewirb dich jetzt für den CommunitySMP Minecraft Server!" />
   </head>
   <body>
     <Header />
@@ -17,51 +17,51 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       <form action="https://formspree.io/f/mblkwojz" method="POST">
         <label>
           Dein Name:
-          <input type="text" name="name" required>
+          <input type="text" name="Name" required>
         </label>
 
         <label>
           Alter:
-          <input type="number" name="number" min="10" max="99" required>
+          <input type="number" name="Age" min="10" max="99" required>
         </label>
 
         <label>
           Minecraft Name:
-          <input type="text" name="minecraftName" required>
+          <input type="text" name="Minecraft_Name" required>
         </label>
 
         <label>
           Warum möchtest du auf den Server?
-          <textarea name="reason" rows="4" required></textarea>
+          <textarea name="Reason_for_wish_to_be_in_Team" rows="4" required></textarea>
         </label>
 
         <label>
           Erfahrung mit Minecraft-Servern:
-          <textarea name="experience" rows="4"></textarea>
+          <textarea name="Experience_with_Servers" rows="4"></textarea>
         </label>
  
        <label>
           An welchen Tagen der Woche kannst du Helfen?
-          <input type="days" name="days" rows="7" placeholder="z.B. Montags, Mittwochs, Freitags..." required>
+          <input type="days" name="Days_can_Play" rows="7" placeholder="z.B. Montags, Mittwochs, Freitags..." required>
        </label>
         
        <label>
          Zu welchen Uhrzeiten bist du Verfügbar?<br>
-         Von <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
+         Von <input type="time" name="Begin_Time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
        </label>
 
        <label>
-         <br> Bis <input type="time" name="time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
+         <br> Bis <input type="time" name="End_Time" rows="3" placeholer="z.B. 10:30 - 17:00 Uhr" required>
        </label>
 
         <label>
           Dein Discord-Tag:
-          <input type="text" name="discord" placeholder="z.B. Spieler#1234" required>
+          <input type="text" name="Discord_Nametag" placeholder="z.B. Spieler#1234" required>
         </label>
 
         <label>
           Deine E-Mail Adresse:
-          <input type="text" name="mail" placeholder="Deine Mail Adresse" required>
+          <input type="text" name="Mail" placeholder="Deine Mail Adresse" required>
         </label>
 
         <button type="submit" style="margin-top: 1rem;">Bewerbung absenden</button>
