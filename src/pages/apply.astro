@@ -2,55 +2,53 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-const role = Astro.url.searchParams.get("role") || "member";
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<html lang="en">
-<head>
-    <BaseHead title="Apply" description="Apply for a team position on CommunitySMP" />
-    <style>
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 10px;
-            text-align: center;
-        }
-        input, textarea {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-        }
-        button {
-            background: #00bcd4;
-            padding: 10px 15px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0097a7;
-        }
-    </style>
-</head>
-<body>
+<html lang="de">
+  <head>
+    <BaseHead title="Bewerbung - CommunitySMP" description="Bewirb dich jetzt für den CommunitySMP Minecraft Server!" />
+  </head>
+  <body>
     <Header />
 
-    <div class="form-container">
-        <h1>Apply for {role.charAt(0).toUpperCase() + role.slice(1)}</h1>
-        <form method="post" action="/submit-application">
-            <input type="text" name="username" placeholder="Minecraft Username" required />
-            <input type="email" name="email" placeholder="Email Address" required />
-            <textarea name="reason" placeholder="Why do you want to be a {role}?" required></textarea>
-            <button type="submit">Send Application</button>
-        </form>
-    </div>
+    <main style="max-width: 600px; margin: 2rem auto; padding: 1rem;">
+      <h1>Bewerbungsformular</h1>
+      <form action="https://formspree.io/f/mblkwojz" method="POST">
+        <label>
+          Dein Name:
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Alter:
+          <input type="number" name="age" min="10" max="99" required>
+        </label>
+
+        <label>
+          Minecraft Name:
+          <input type="text" name="minecraftName" required>
+        </label>
+
+        <label>
+          Warum möchtest du auf den Server?
+          <textarea name="reason" rows="4" required></textarea>
+        </label>
+
+        <label>
+          Erfahrung mit Minecraft-Servern:
+          <textarea name="experience" rows="4"></textarea>
+        </label>
+
+        <label>
+          Dein Discord-Tag:
+          <input type="text" name="discord" placeholder="z.B. Spieler#1234" required>
+        </label>
+
+        <button type="submit" style="margin-top: 1rem;">Bewerbung absenden</button>
+      </form>
+    </main>
 
     <Footer />
-</body>
+  </body>
 </html>
