@@ -1,0 +1,90 @@
+---
+const showOnLoad = true;
+---
+
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent" hidden>
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <strong>We use essential cookies</strong>
+      <p>
+        This site uses essential cookies and a small local consent flag to make the form and basic features work.
+        By clicking “Accept” you agree to this. Read more in our <a href="/privacy">Privacy Policy</a>.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn-accept">Accept</button>
+      <a href="/privacy" class="btn-more">Privacy</a>
+    </div>
+  </div>
+
+  <style>
+    .cookie-banner {
+      position: fixed;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      background: rgba(17,17,17,0.95);
+      color: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      z-index: 1200;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    .cookie-inner {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .cookie-text p {
+      margin: 6px 0 0 0;
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-accept {
+      background: #00bcd4;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-more {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 720px) {
+      .cookie-inner { flex-direction: column; align-items: stretch; }
+      .cookie-actions { justify-content: end; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      const KEY = 'communitysmp_cookie_consent_v1';
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+
+      // show banner only when no consent stored
+      const consent = localStorage.getItem(KEY);
+      if (!consent) {
+        banner.hidden = false;
+      }
+
+      acceptBtn?.addEventListener('click', () => {
+        localStorage.setItem(KEY, 'accepted');
+        banner.hidden = true;
+      });
+    })();
+  </script>
+</div>
