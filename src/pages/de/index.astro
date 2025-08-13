@@ -1,0 +1,206 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import CookieBanner from '../components/CookieBanner.astro';
+
+const serverIP = "communitysmp.de";
+const discordLink = "https://discord.gg/Js3c3ynRRd";
+---
+
+<html lang="de">
+<head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        .ip-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 30px;
+            display: inline-block;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+        .ip-box:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .copy-popup {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00bcd4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .copy-popup.show {
+            opacity: 1;
+        }
+        section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 2px solid #00bcd4;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        ul {
+            text-align: left;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .discord-btn {
+            background: #5865F2;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .discord-btn:hover {
+            background: #4752C4;
+        }
+        .about-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .about-section h3 {
+            color: #00bcd4;
+            margin-top: 20px;
+        }
+        .about-section ul, .about-section ol {
+            margin-left: 20px;
+        }
+        .about-section strong {
+            color: #fff;
+        }
+        .emoji-title {
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <Header />
+
+    <main>
+        <header>
+            <h1>CommunitySMP</h1>
+            <p>Dein Minecraft-Server für Spaß, Gemeinschaft & Abenteuer!</p>
+            <div class="ip-box" id="copyIP" data-ip={serverIP}>
+                🌐 IP: {serverIP}
+                <span class="copy-popup" id="copyPopup">IP kopiert!</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Regeln</h2>
+            <ul>
+                <li>Kein Griefing oder Stehlen</li>
+                <li>Respektvoll miteinander umgehen</li>
+                <li>Keine Hacks oder unfairen Mods</li>
+                <li>Bauen und Spaß haben!</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Team</h2>
+            <ul>
+                <li>Owner: Jona Gotthardt</li>
+                <li>Admin: <a href="/de/apply" class="apply-btn">Jetzt bewerben!</a></li>
+                <li>Moderatoren: <a href="/de/apply" class="apply-btn">Jetzt bewerben!</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Community</h2>
+            <a href={discordLink} class="discord-btn">💬 Tritt unserem Discord bei</a>
+        </section>
+
+        <section class="about-section">
+            <p class="emoji-title">🎮 <strong>Willkommen bei CommunitySMP – Kostenlos für alle!</strong></p>
+            <p>
+                Hallo! 👋 Du suchst eine spaßige Minecraft-Welt, in der <strong>jeder willkommen ist</strong>,
+                ohne Zahlungen, ohne Paywalls – einfach reiner Survival-Spaß? Dann hast du dein neues Zuhause gefunden! 🏡
+            </p>
+            <p>
+                CommunitySMP ist ein freundlicher Ort für <strong>Java</strong>- und <strong>Bedrock</strong>-Spieler,
+                um gemeinsam zu bauen, zu erkunden und zu überleben. Ob du ein gemütliches Dorf starten, epische Abenteuer erleben
+                oder einfach mit Freunden abhängen willst – hier ist Platz für dich.
+            </p>
+
+            <h3>🌍 Server-Details</h3>
+            <ul>
+                <li>✨ <strong>IP:</strong> communitysmp.de</li>
+                <li>✨ <strong>Version:</strong> 1.21.7</li>
+                <li>✨ <strong>Bedrock-Port:</strong> 20274</li>
+                <li>✨ Funktioniert für Java & Bedrock</li>
+                <li>✨ Typ: Survival Multiplayer (SMP) mit Community-Regeln</li>
+            </ul>
+
+            <h3>🔥 Warum zu uns?</h3>
+            <ul>
+                <li>Vollständig kostenlos – keine zu kaufenden Ränge, keine versteckten Gebühren</li>
+                <li>Eine freundliche & respektvolle Community</li>
+                <li>Events & Gruppenprojekte für mehr Abwechslung</li>
+                <li>24/7 offen – spiel wann immer du willst</li>
+            </ul>
+
+            <h3>⚡ So kannst du beitreten</h3>
+            <ol>
+                <li>Minecraft öffnen (Java oder Bedrock)</li>
+                <li>Zu „Multiplayer“ (Java) oder „Server“ (Bedrock) gehen</li>
+                <li>Unsere IP-Adresse hinzufügen</li>
+                <li>„Beitreten“ klicken und dein Abenteuer starten! 🚀</li>
+            </ol>
+        </section>
+    </main>
+
+    <Footer />
+    <CookieBanner />
+
+    <script>
+        const copyBtn = document.getElementById("copyIP");
+        const popup = document.getElementById("copyPopup");
+
+        copyBtn.addEventListener("click", async () => {
+            const ip = copyBtn.getAttribute("data-ip");
+            try {
+                await navigator.clipboard.writeText(ip);
+                popup.classList.add("show");
+                setTimeout(() => popup.classList.remove("show"), 1500);
+            } catch (err) {
+                console.error("Fehler beim Kopieren der IP: ", err);
+            }
+        });
+    </script>
+</body>
+</html>
