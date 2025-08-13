@@ -1,0 +1,73 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<html lang="de">
+  <head>
+    <BaseHead title="Bewerbung fürs Server-Team - CommunitySMP" description="Bewirb dich jetzt für den CommunitySMP Minecraft Server!" />
+  </head>
+  <body>
+    <Header />
+
+    <main style="max-width: 600px; margin: 2rem auto; padding: 1rem;">
+      <h1>Bewerbungsformular</h1>
+      <form action="https://formspree.io/f/mblkwojz" method="POST">
+        <label>
+          Dein Name:
+          <input type="text" name="Name" required>
+        </label>
+
+        <label>
+          Alter:
+          <input type="number" name="Age" min="10" max="99" required>
+        </label>
+
+        <label>
+          Minecraft-Name:
+          <input type="text" name="Minecraft_Name" required>
+        </label>
+
+        <label>
+          Warum möchtest du ins Server-Team?
+          <textarea name="Reason_for_wish_to_be_in_Team" rows="4" required></textarea>
+        </label>
+
+        <label>
+          Erfahrung mit Minecraft-Servern:
+          <textarea name="Experience_with_Servers" rows="4"></textarea>
+        </label>
+ 
+       <label>
+          An welchen Tagen der Woche kannst du helfen?
+          <input type="text" name="Days_can_Play" placeholder="z.B. Montags, Mittwochs, Freitags..." required>
+       </label>
+        
+       <label>
+         Zu welchen Uhrzeiten bist du verfügbar?<br>
+         Von <input type="time" name="Begin_Time" required>
+       </label>
+
+       <label>
+         <br> Bis <input type="time" name="End_Time" required>
+       </label>
+
+        <label>
+          Dein Discord-Tag:
+          <input type="text" name="Discord_Nametag" placeholder="z.B. Spieler#1234" required>
+        </label>
+
+        <label>
+          Deine E-Mail-Adresse:
+          <input type="text" name="Mail" placeholder="Deine E-Mail-Adresse" required>
+        </label>
+
+        <button type="submit" style="margin-top: 1rem;">Bewerbung absenden</button>
+      </form>
+    </main>
+
+    <Footer />
+  </body>
+</html>
