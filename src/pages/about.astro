@@ -10,10 +10,31 @@ import Layout from '../layouts/BlogPost.astro';
 >
 	<style>
 		body {
-			background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
-			color: #e0e0e0;
+			margin: 0;
 			font-family: 'Poppins', sans-serif;
-			line-height: 1.7;
+			color: #e0e0e0;
+			overflow-x: hidden;
+			background: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
+		}
+
+		/* Sterne-Hintergrund */
+		body::before {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url('/stars.png') repeat;
+			background-size: cover;
+			opacity: 0.3;
+			z-index: -1;
+			animation: starMove 200s linear infinite;
+		}
+
+		@keyframes starMove {
+			from { background-position: 0 0; }
+			to { background-position: -10000px 5000px; }
 		}
 
 		h1, h2, h3 {
@@ -25,18 +46,10 @@ import Layout from '../layouts/BlogPost.astro';
 			color: #f0f0f0;
 		}
 
-		ul li {
-			margin-bottom: 10px;
-			position: relative;
-			padding-left: 25px;
-		}
-
 		ul li::before {
 			content: "✔";
-			position: absolute;
-			left: 0;
+			margin-right: 10px;
 			color: #00bcd4;
-			text-shadow: 0 0 5px #00bcd499;
 		}
 
 		code {
