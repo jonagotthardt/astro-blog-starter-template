@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+
+const plugins = [
+  {
+    name: "Mystical Gems",
+    description: "Magische Edelsteine mit einzigartigen Fähigkeiten – perfekt für Survival, RPG & Abenteuer-Server.",
+    file: "/downloads/MysticGems-1.0.5-1.21.7.jar"
+  },
+  {
+    name: "Extended Inventory",
+    description: "Erweitertes Inventar für Paper-Server, mit dem du jederzeit /inv verwenden kannst.",
+    file: "/downloads/extendedinventory-1.0.7.jar"
+  },
+  {
+    name: "AllMobEggs",
+    description: "Craftet alle Spawn-Eier (vanilla & Mod-Mobs) auf Paper 1.21.7.",
+    file: "/downloads/AllMobEggs-1.0.jar"
+  }
+];
+---
+
+<Layout title="Plugins herunterladen">
+  <h1>Meine Minecraft-Plugins</h1>
+  <p>Hier kannst du meine Plugins direkt als <code>.jar</code> herunterladen:</p>
+
+  <ul>
+    {plugins.map(plugin => (
+      <li>
+        <h2>{plugin.name}</h2>
+        <p>{plugin.description}</p>
+        <a href={plugin.file} download>📥 Direkt herunterladen</a>
+      </li>
+    ))}
+  </ul>
+</Layout>
