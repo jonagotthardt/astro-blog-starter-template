@@ -1,0 +1,26 @@
+/* src/styles/StarryBackground.css */
+
+body.starry-body {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow-x: hidden;
+    color: white;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+body.starry-body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url('/stars.svg') repeat;
+    animation: moveStars 200s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
