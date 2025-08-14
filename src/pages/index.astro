@@ -12,32 +12,74 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
 <html lang="en">
 <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #1a1a1d, #121212, #1a1a1d);
+            background-size: 300% 300%;
+            animation: bgShift 15s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         header {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
-        h1 {
-            font-size: 3rem;
-            margin: 0;
+        h1, h2 {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0.5em 0;
         }
+
         p {
             font-size: 1.2rem;
+            margin: 0.5em 0;
         }
+
+        /* Fade-In + Slide Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeSlide 1s ease forwards;
+        }
+        .fade-delay-1 { animation-delay: 0.2s; }
+        .fade-delay-2 { animation-delay: 0.4s; }
+        .fade-delay-3 { animation-delay: 0.6s; }
+        .fade-delay-4 { animation-delay: 0.8s; }
+
+        @keyframes fadeSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .ip-box {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             padding: 15px 30px;
             display: inline-block;
             border-radius: 10px;
             margin-top: 20px;
             font-size: 1.3rem;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             position: relative;
         }
         .ip-box:hover {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
+
         .copy-popup {
             position: absolute;
             bottom: -30px;
@@ -55,24 +97,22 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
         .copy-popup.show {
             opacity: 1;
         }
+
         section {
-            max-width: 800px;
+            max-width: 900px;
             margin: 50px auto;
             padding: 20px;
             text-align: center;
         }
-        h2 {
-            border-bottom: 2px solid #00bcd4;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-        ul {
+
+        ul, ol {
             text-align: left;
             display: inline-block;
             margin-top: 10px;
         }
-        .discord-btn {
-            background: #5865F2;
+
+        .discord-btn, .apply-btn {
+            background: linear-gradient(45deg, #5865F2, #4752C4);
             padding: 15px 25px;
             border-radius: 8px;
             text-decoration: none;
@@ -80,26 +120,26 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             font-weight: bold;
             display: inline-block;
             margin-top: 20px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
-        .discord-btn:hover {
-            background: #4752C4;
+        .discord-btn:hover, .apply-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        /* Modern look for About Section */
+
+        /* Modern About Section */
         .about-section {
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             border-radius: 12px;
-            padding: 30px;
+            padding: 40px;
             margin-top: 40px;
             text-align: left;
             line-height: 1.6;
+            animation: fadeSlide 1s ease forwards;
         }
         .about-section h3 {
             color: #00bcd4;
             margin-top: 20px;
-        }
-        .about-section ul, .about-section ol {
-            margin-left: 20px;
         }
         .about-section strong {
             color: #fff;
@@ -113,16 +153,16 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
     <Header />
 
     <main>
-        <header>
+        <header class="fade-in fade-delay-1">
             <h1>CommunitySMP</h1>
             <p>Your Minecraft server for fun, community & adventures!</p>
-            <div class="ip-box" id="copyIP" data-ip={serverIP}>
+            <div class="ip-box fade-in fade-delay-2" id="copyIP" data-ip={serverIP}>
                 🌐 IP: {serverIP}
                 <span class="copy-popup" id="copyPopup">IP copied!</span>
             </div>
         </header>
 
-        <section>
+        <section class="fade-in fade-delay-3">
             <h2>Rules</h2>
             <ul>
                 <li>No griefing or stealing</li>
@@ -132,7 +172,7 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             </ul>
         </section>
 
-        <section>
+        <section class="fade-in fade-delay-4">
             <h2>Team</h2>
             <ul>
                 <li>Owner: Jona Gotthardt</li>
@@ -141,17 +181,16 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             </ul>
         </section>
 
-        <section>
+        <section class="fade-in fade-delay-3">
             <h2>Community</h2>
             <a href={discordLink} class="discord-btn">💬 Join our Discord</a>
         </section>
 
-        <!-- New Modern About Section -->
-        <section class="about-section">
+        <section class="about-section fade-in fade-delay-4">
             <p class="emoji-title">🎮 <strong>Welcome to the CommunitySMP – Free for Everyone!</strong></p>
             <p>
                 Hey there! 👋 Looking for a fun Minecraft world where <strong>everyone is welcome</strong>,
-                with no payments, no paywalls – just pure survival fun? Then you’ve just found your new home! 🏡
+                with no payments, no paywalls – just pure survival fun! 🏡
             </p>
             <p>
                 Our CommunitySMP is a friendly place for both <strong>Java</strong> and <strong>Bedrock</strong> players to
@@ -187,7 +226,8 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
     </main>
 
     <Footer />
-      <CookieBanner />
+    <CookieBanner />
+
     <script>
         const copyBtn = document.getElementById("copyIP");
         const popup = document.getElementById("copyPopup");
