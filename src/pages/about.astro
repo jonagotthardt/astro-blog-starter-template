@@ -9,106 +9,41 @@ import Layout from '../layouts/BlogPost.astro';
 	heroImage="/mc1.jpg"
 >
 	<style>
-		/* Background Hero Animation */
 		body {
-			background: radial-gradient(ellipse at center, #0a0a0a, #1a1a1a);
-			overflow-x: hidden;
-		}
-
-		.hero-bg {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-			overflow: hidden;
-		}
-
-		.particle {
-			position: absolute;
-			border-radius: 50%;
-			background: linear-gradient(45deg, #00ffff, #ff00ff);
-			opacity: 0.7;
-			animation: floatParticles 20s linear infinite;
-			pointer-events: none;
-		}
-
-		@keyframes floatParticles {
-			0% { transform: translateY(100vh) translateX(0); }
-			100% { transform: translateY(-50vh) translateX(100vw); }
-		}
-
-		p, ul, ol, li {
+			background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+			color: #e0e0e0;
 			font-family: 'Poppins', sans-serif;
-			font-size: 1.2rem;
-			line-height: 1.8;
-			color: #eee;
-			position: relative;
-			z-index: 1;
+			line-height: 1.7;
 		}
 
-		h3 {
-			color: #00ffff;
-			font-size: 1.8rem;
-			margin-top: 2rem;
-			text-shadow: 0 0 10px #00ffff99;
+		h1, h2, h3 {
+			color: #00bcd4;
+			text-shadow: 0 0 10px rgba(0,188,212,0.5);
+		}
+
+		p, li {
+			color: #ccc;
 		}
 
 		ul li {
 			margin-bottom: 10px;
 			position: relative;
 			padding-left: 25px;
-			transition: transform 0.3s ease, color 0.3s ease;
 		}
 
 		ul li::before {
 			content: "✔";
 			position: absolute;
 			left: 0;
-			color: #ff00ff;
-			text-shadow: 0 0 5px #ff00ff99, 0 0 10px #00ffff77;
-		}
-
-		ul li:hover {
-			transform: translateX(5px);
-			color: #00ffff;
+			color: #00bcd4;
+			text-shadow: 0 0 5px #00bcd499;
 		}
 
 		code {
-			background: rgba(0,255,255,0.1);
+			background: rgba(0,188,212,0.1);
 			padding: 3px 6px;
 			border-radius: 5px;
-			font-family: 'Fira Code', monospace;
-			color: #00ffff;
-		}
-
-		p.emoji-title {
-			font-size: 1.5rem;
-			font-weight: bold;
-			background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
-			background-clip: text;
-			-webkit-background-clip: text;
-			color: transparent;
-			animation: gradientText 5s ease infinite;
-			display: inline-block;
-		}
-
-		@keyframes gradientText {
-			0% { background-position: 0% 50%; }
-			50% { background-position: 100% 50%; }
-			100% { background-position: 0% 50%; }
-		}
-
-		section.animate-on-scroll {
-			opacity: 0;
-			transform: translateY(50px);
-			transition: opacity 0.7s ease, transform 0.7s ease;
-		}
-
-		section.animate-on-scroll.visible {
-			opacity: 1;
-			transform: translateY(0);
+			color: #00bcd4;
 		}
 
 		a.discord-btn {
@@ -116,27 +51,51 @@ import Layout from '../layouts/BlogPost.astro';
 			margin-top: 20px;
 			padding: 15px 40px;
 			border-radius: 15px;
-			background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
-			color: black;
+			background: linear-gradient(90deg, #00bcd4, #ff4081);
+			color: white;
 			font-weight: bold;
 			text-decoration: none;
 			font-size: 1.2rem;
-			box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
+			box-shadow: 0 0 20px #00bcd499, 0 0 40px #ff408166;
 			transition: all 0.4s ease;
 		}
 
 		a.discord-btn:hover {
-			transform: scale(1.1);
-			color: white;
-			background: linear-gradient(90deg, #ff00ff, #00ffff, #ffea00);
-			box-shadow: 0 0 30px #ff00ffbb, 0 0 60px #00ffffaa;
+			transform: scale(1.05);
+			box-shadow: 0 0 30px #00bcd4aa, 0 0 60px #ff4081aa;
+		}
+
+		section {
+			background: rgba(0,0,0,0.3);
+			border-radius: 12px;
+			padding: 30px;
+			margin: 40px auto;
+			max-width: 900px;
+			transition: all 0.6s ease;
+			opacity: 0;
+			transform: translateY(50px);
+		}
+
+		section.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.hero-image {
+			width: 100%;
+			max-height: 400px;
+			object-fit: cover;
+			border-radius: 12px;
+			margin-bottom: 30px;
+			box-shadow: 0 0 30px #00bcd499;
 		}
 	</style>
 
-	<div class="hero-bg" id="hero-bg"></div>
+	<!-- Hero Image -->
+	<img src="/mc1.jpg" alt="CommunitySMP Hero" class="hero-image" />
 
-	<section class="animate-on-scroll">
-		<p class="emoji-title">🎮 About CommunitySMP</p>
+	<section>
+		<p class="emoji-title">🎮 <strong>About CommunitySMP</strong></p>
 		<p>
 			Hi, I’m <strong>Jona Gotthardt</strong> – the owner and founder of <strong>CommunitySMP</strong>.
 			What started as a small Minecraft survival world for a few friends has now grown into a
@@ -145,7 +104,7 @@ import Layout from '../layouts/BlogPost.astro';
 		</p>
 	</section>
 
-	<section class="animate-on-scroll">
+	<section>
 		<h3>Our Team</h3>
 		<p>
 			We might be a small team, but we’re passionate about keeping the server fun and safe.
@@ -158,17 +117,17 @@ import Layout from '../layouts/BlogPost.astro';
 		</ul>
 	</section>
 
-	<section class="animate-on-scroll">
+	<section>
 		<h3>What makes us different?</h3>
 		<ul>
-			<li>Completely free – no paid ranks or hidden fees</li>
-			<li>24/7 uptime so you can play whenever you want</li>
-			<li>Events, challenges, and community projects</li>
-			<li>Friendly, respectful players from all backgrounds</li>
+			<li>✅ Completely free – no paid ranks or hidden fees</li>
+			<li>✅ 24/7 uptime so you can play whenever you want</li>
+			<li>✅ Events, challenges, and community projects</li>
+			<li>✅ Friendly, respectful players from all backgrounds</li>
 		</ul>
 	</section>
 
-	<section class="animate-on-scroll">
+	<section>
 		<p>
 			We believe Minecraft is best when it’s shared with others. That’s why CommunitySMP focuses on
 			<strong>collaboration over competition</strong> – we want to see your builds, help with your
@@ -184,8 +143,8 @@ import Layout from '../layouts/BlogPost.astro';
 	</section>
 
 	<script>
-		// Scroll animations
-		const observer = new IntersectionObserver((entries) => {
+		// Animate sections on scroll
+		const observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
 				if(entry.isIntersecting){
 					entry.target.classList.add('visible');
@@ -193,22 +152,6 @@ import Layout from '../layouts/BlogPost.astro';
 			});
 		}, { threshold: 0.2 });
 
-		document.querySelectorAll('section.animate-on-scroll').forEach(el => {
-			observer.observe(el);
-		});
-
-		// Generate particles for hero background
-		const heroBg = document.getElementById('hero-bg');
-		for(let i=0; i<50; i++){
-			const particle = document.createElement('div');
-			particle.classList.add('particle');
-			const size = Math.random()*6 + 4;
-			particle.style.width = size+'px';
-			particle.style.height = size+'px';
-			particle.style.top = Math.random()*100+'%';
-			particle.style.left = Math.random()*100+'%';
-			particle.style.animationDuration = (10 + Math.random()*20)+'s';
-			heroBg.appendChild(particle);
-		}
+		document.querySelectorAll('section').forEach(section => observer.observe(section));
 	</script>
 </Layout>
