@@ -12,157 +12,200 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
 <html lang="en">
 <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
+        /* -------------------- Grundlayout -------------------- */
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            color: white;
-            background: linear-gradient(135deg, #1a1a1d, #121212, #1a1a1d);
-            background-size: 300% 300%;
-            animation: bgShift 15s ease infinite;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        @keyframes bgShift {
+        /* -------------------- Header -------------------- */
+        header {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 5s ease infinite;
+            text-shadow: 0 0 20px rgba(0,255,255,0.7);
+        }
+
+        @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        header {
-            padding: 60px 20px;
-            text-align: center;
-        }
-        h1, h2 {
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0.5em 0;
-        }
-
         p {
-            font-size: 1.2rem;
-            margin: 0.5em 0;
+            font-size: 1.4rem;
+            margin-top: 15px;
+            color: #ccc;
+            text-shadow: 0 0 10px rgba(0,255,255,0.3);
         }
 
-        /* Fade-In + Slide Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeSlide 1s ease forwards;
-        }
-        .fade-delay-1 { animation-delay: 0.2s; }
-        .fade-delay-2 { animation-delay: 0.4s; }
-        .fade-delay-3 { animation-delay: 0.6s; }
-        .fade-delay-4 { animation-delay: 0.8s; }
-
-        @keyframes fadeSlide {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* -------------------- IP Box -------------------- */
         .ip-box {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px 30px;
-            display: inline-block;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             position: relative;
+            font-weight: bold;
+            color: #00ffff;
+            box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
+            transition: all 0.3s ease;
         }
+
         .ip-box:hover {
-            background: rgba(0, 0, 0, 0.7);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transform: scale(1.05);
+            background: rgba(0, 255, 255, 0.2);
+            color: #ff00ff;
         }
 
         .copy-popup {
             position: absolute;
-            bottom: -30px;
+            bottom: -40px;
             left: 50%;
             transform: translateX(-50%);
-            background: #00bcd4;
-            color: white;
-            padding: 5px 10px;
+            background: #00ffff;
+            color: black;
+            padding: 8px 15px;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            box-shadow: 0 0 15px #00ffff99;
         }
+
         .copy-popup.show {
             opacity: 1;
         }
 
+        /* -------------------- Sections -------------------- */
         section {
             max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
+            margin: 70px auto;
+            padding: 40px;
             text-align: center;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 40px rgba(0,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #00ffff;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            color: #00ffff;
         }
 
         ul, ol {
             text-align: left;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            line-height: 1.8;
         }
 
+        /* -------------------- Buttons -------------------- */
         .discord-btn, .apply-btn {
-            background: linear-gradient(45deg, #5865F2, #4752C4);
-            padding: 15px 25px;
-            border-radius: 8px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
+            padding: 18px 40px;
+            border-radius: 15px;
             text-decoration: none;
-            color: white;
             font-weight: bold;
+            color: black;
+            font-size: 1.2rem;
             display: inline-block;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-        .discord-btn:hover, .apply-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-top: 25px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
         }
 
-        /* Modern About Section */
+        .discord-btn:hover, .apply-btn:hover {
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ffea00);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #ff00ffbb, 0 0 60px #00ffffaa;
+        }
+
+        /* -------------------- About Section -------------------- */
         .about-section {
-            background: rgba(0,0,0,0.4);
-            border-radius: 12px;
-            padding: 40px;
-            margin-top: 40px;
             text-align: left;
-            line-height: 1.6;
-            animation: fadeSlide 1s ease forwards;
+            line-height: 1.7;
         }
+
         .about-section h3 {
-            color: #00bcd4;
-            margin-top: 20px;
+            color: #00ffff;
+            margin-top: 25px;
+            font-size: 1.6rem;
         }
+
         .about-section strong {
-            color: #fff;
+            color: #ffffff;
         }
+
         .emoji-title {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
         }
+
+        /* -------------------- Animations -------------------- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -------------------- Particles Background -------------------- */
+        .particles {
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
     <Header />
 
-    <main>
-        <header class="fade-in fade-delay-1">
+    <main style="position: relative; z-index: 1;">
+        <header class="animate-on-scroll">
             <h1>CommunitySMP</h1>
             <p>Your Minecraft server for fun, community & adventures!</p>
-            <div class="ip-box fade-in fade-delay-2" id="copyIP" data-ip={serverIP}>
+            <div class="ip-box" id="copyIP" data-ip={serverIP}>
                 🌐 IP: {serverIP}
                 <span class="copy-popup" id="copyPopup">IP copied!</span>
             </div>
         </header>
 
-        <section class="fade-in fade-delay-3">
+        <section class="animate-on-scroll">
             <h2>Rules</h2>
             <ul>
                 <li>No griefing or stealing</li>
@@ -172,7 +215,7 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             </ul>
         </section>
 
-        <section class="fade-in fade-delay-4">
+        <section class="animate-on-scroll">
             <h2>Team</h2>
             <ul>
                 <li>Owner: Jona Gotthardt</li>
@@ -181,16 +224,16 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
             </ul>
         </section>
 
-        <section class="fade-in fade-delay-3">
+        <section class="animate-on-scroll">
             <h2>Community</h2>
             <a href={discordLink} class="discord-btn">💬 Join our Discord</a>
         </section>
 
-        <section class="about-section fade-in fade-delay-4">
+        <section class="about-section animate-on-scroll">
             <p class="emoji-title">🎮 <strong>Welcome to the CommunitySMP – Free for Everyone!</strong></p>
             <p>
                 Hey there! 👋 Looking for a fun Minecraft world where <strong>everyone is welcome</strong>,
-                with no payments, no paywalls – just pure survival fun! 🏡
+                with no payments, no paywalls – just pure survival fun? Then you’ve just found your new home! 🏡
             </p>
             <p>
                 Our CommunitySMP is a friendly place for both <strong>Java</strong> and <strong>Bedrock</strong> players to
@@ -229,6 +272,7 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
     <CookieBanner />
 
     <script>
+        // Copy IP
         const copyBtn = document.getElementById("copyIP");
         const popup = document.getElementById("copyPopup");
 
@@ -242,6 +286,61 @@ const discordLink = "https://discord.gg/Js3c3ynRRd";
                 console.error("Error copying IP: ", err);
             }
         });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('section, header').forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+
+        // Particles background
+        const canvas = document.createElement('canvas');
+        document.getElementById('particles').appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+
+        let particles = [];
+        for (let i=0;i<100;i++) {
+            particles.push({
+                x: Math.random()*w,
+                y: Math.random()*h,
+                r: Math.random()*3+1,
+                d: Math.random()*1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = 'rgba(0,255,255,0.7)';
+            ctx.beginPath();
+            for (let i=0;i<particles.length;i++){
+                let p = particles[i];
+                ctx.moveTo(p.x,p.y);
+                ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+            }
+            ctx.fill();
+            update();
+        }
+
+        function update(){
+            for (let i=0;i<particles.length;i++){
+                let p = particles[i];
+                p.y += 0.2;
+                if(p.y>h){p.y=0;p.x=Math.random()*w;}
+            }
+        }
+
+        setInterval(draw,30);
+        window.addEventListener('resize',()=>{w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;});
     </script>
 </body>
 </html>
