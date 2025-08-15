@@ -15,39 +15,75 @@ const pubDate = new Date("2025-08-13");
 <html lang="en">
 <head>
     <BaseHead title={title} description={description} />
-    <link rel="stylesheet" href="/styles/starry-background.css">
     <style>
+        /* Hintergrund wie auf der Home Page */
         body {
             margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            color: white;
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Fade-in Effekt */
+        main, header, footer {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        main {
+            animation-delay: 0.3s;
+        }
+
+        footer {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particles {
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
         main {
             width: calc(100% - 2em);
             max-width: 100%;
             margin: 0;
-            padding-top: 2em;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-image {
             width: 100%;
+            text-align: center;
         }
+
         .hero-image img {
             display: block;
             margin: 0 auto;
             border-radius: 12px;
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
         .prose {
             width: 720px;
             max-width: calc(100% - 2em);
             margin: auto;
-            padding: 1.5em;
-            background: rgba(0, 0, 0, 0.55); /* Halbtransparenter Hintergrund */
+            padding: 1em;
+            color: #e0e0e0;
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 12px;
             backdrop-filter: blur(6px);
         }
@@ -56,31 +92,34 @@ const pubDate = new Date("2025-08-13");
             margin-bottom: 1em;
             padding: 1em 0;
             text-align: center;
-            line-height: 1;
+            line-height: 1.2;
         }
 
         .title h1 {
             margin: 0 0 0.5em 0;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00f2ff, #ff00f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .date {
             margin-bottom: 0.5em;
-            color: rgba(255, 255, 255, 0.7);
+            color: #b0b0b0;
         }
 
         .last-updated-on {
             font-style: italic;
         }
-
-        hr {
-            border: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
     </style>
 </head>
 
-<body class="starry-body">
+<body>
+    <!-- Sterne-Hintergrund -->
+    <div class="particles" id="particles"></div>
+
     <Header />
+
     <main>
         <article>
             <div class="hero-image">
@@ -105,7 +144,57 @@ const pubDate = new Date("2025-08-13");
             </div>
         </article>
     </main>
+
     <Footer />
-    <CookieBanner />
+    <CookieBanner />  
+
+    <!-- Particles Script -->
+    <script>
+        const canvas = document.createElement('canvas');
+        document.getElementById('particles').appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+
+        let particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 3 + 1,
+                d: Math.random() * 1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = 'rgba(0,255,255,0.7)';
+            ctx.beginPath();
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                ctx.moveTo(p.x, p.y);
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            update();
+        }
+
+        function update() {
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.y += 0.2;
+                if (p.y > h) {
+                    p.y = 0;
+                    p.x = Math.random() * w;
+                }
+            }
+        }
+
+        setInterval(draw, 30);
+        window.addEventListener('resize', () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
