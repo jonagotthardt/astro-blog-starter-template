@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
-import Markdown from '@astrojs/markdown-remark';
+import { Markdown } from '@astrojs/markdown-remark';
+
 import AllMobEggs from '../content/AllMobEggs.md';
 import MysticalGems from '../content/MysticalGems.md';
 import ExtendedInventory from '../content/ExtendedInventory.md';
 
 const plugins = [
-  { name: "AllMobEggs", version: "4.0", md: AllMobEggs },
+  { name: "AllMobEggs", version: "2.0", md: AllMobEggs },
   { name: "MysticalGems", version: "1.0", md: MysticalGems },
   { name: "ExtendedInventory", version: "1.0", md: ExtendedInventory }
 ];
@@ -32,6 +33,13 @@ const plugins = [
   border-radius: 4px;
   overflow-x: auto;
 }
+
+.plugin-readme h1 { color: #ffcc00; font-size: 1.8rem; margin-top: 1rem; }
+.plugin-readme h2 { color: #ff9900; font-size: 1.5rem; margin-top: 1rem; }
+.plugin-readme h3 { color: #ff6600; font-size: 1.3rem; margin-top: 0.8rem; }
+
+.plugin-readme a { color: #00ccff; text-decoration: underline; }
+.plugin-readme ul, .plugin-readme ol { margin-left: 1.5rem; margin-bottom: 1rem; }
 
 .back-button {
   display: inline-block;
