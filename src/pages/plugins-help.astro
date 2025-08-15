@@ -6,8 +6,7 @@ const plugins = [
   {
     name: "AllMobEggs",
     version: "4.0",
-    readme: `
-# AllMobEggs – Craft Spawn Eggs Easily
+    readme: `# AllMobEggs – Craft Spawn Eggs Easily
 
 **Version:** 4.0  
 **Minecraft:** Paper 1.21.7  
@@ -19,18 +18,14 @@ const plugins = [
 
 AllMobEggs is a lightweight Paper plugin that adds **custom crafting recipes** for many vanilla spawn eggs.  
 Each spawn egg can be crafted using a **chicken egg** and a mob-specific drop.  
-Perfect for survival servers that want to make mob farming more accessible without creative mode.
 
 ---
 
 ## Features
 
 - Adds **fixed crafting recipes** for multiple vanilla mobs
-- Each recipe uses:
-  - **E** = Chicken egg
-  - **I** = Mob-specific drop
-- Recipes are **automatically unlocked** when a player joins
-- `/eggrecipes` command (custom implementation required in Commands.java)
+- Recipes are **automatically unlocked** on player join
+- `/eggrecipes` command
 
 ---
 
@@ -46,83 +41,27 @@ E = Chicken Egg
 I = Rotten Flesh
 \`\`\`
 
-*(Most spawn eggs use their respective mob drops – see the source code for the full list.)*
-
----
-
-## Included Spawn Eggs
-
-- Zombie – Rotten Flesh  
-- Skeleton – Bone  
-- Creeper – Gunpowder  
-- Spider – String  
-- Enderman – Ender Pearl  
-- Slime – Slimeball  
-- Pig – Porkchop  
-- Cow – Beef  
-- Chicken – Egg  
-- Sheep – White Wool  
-- Wolf – Bone  
-- Villager – Emerald  
-- Witch – Sugar  
-- Zombie Villager – Rotten Flesh  
-- Skeleton Horse – Bone  
-- Zombie Horse – Rotten Flesh  
-- Horse – Leather  
-- Ocelot – Cod  
-- Parrot – Wheat Seeds  
-- Polar Bear – Salmon  
-- Rabbit – Rabbit Foot  
-- Iron Golem – Iron Ingot  
+*(See source code for full list.)*
 
 ---
 
 ## Installation
 
 1. Download \`AllMobEggs.jar\`  
-2. Place it in your server’s \`/plugins\` folder  
-3. Restart your server  
-4. Recipes will be available instantly – no configuration required  
-
----
-
-## Configuration
-
-Currently, AllMobEggs uses **hardcoded recipes**, so no additional configuration is needed.  
-
----
-
-## Compatibility
-
-- **Tested:** Paper 1.21.7  
-- **Likely compatible:** Spigot 1.21.7  
-- Only works with mobs that already have vanilla spawn eggs
+2. Place it in `/plugins`  
+3. Restart server  
 
 ---
 
 ## License
 
-MIT License – free to use, modify, and distribute.
-
----
-
-## Support
-
-For bug reports, suggestions, or contributions:  
-- Open an issue or pull request on the project’s repository  
-- Or contact the author directly
-
----
-
-**Thanks for using AllMobEggs!**  
-Have fun crafting your spawn eggs! 🥚🐉🧟‍♂️
-    `
+MIT License
+`
   },
   {
     name: "MysticalGems",
     version: "1.0",
-    readme: `
-# MysticalGems – Magical Gems for Minecraft
+    readme: `# MysticalGems – Magical Gems for Minecraft
 
 **Version:** 1.0  
 **Minecraft:** Paper 1.21.7  
@@ -132,85 +71,34 @@ Have fun crafting your spawn eggs! 🥚🐉🧟‍♂️
 
 ## Description
 
-MysticalGems introduces magical gems with **unique abilities** for survival, adventure, and RPG servers.  
-Players can craft, find, or collect gems, each with its own special effect.
+Magical gems with unique abilities for survival and RPG servers.
 
 ---
 
 ## Features
 
 - Adds **magical gems** with custom powers  
-- Gems can be used for crafting, potions, or as special items  
-- Works on vanilla and Paper servers  
-- Lightweight and optimized for performance  
-
----
-
-## Crafting Example
-
-Each gem uses a **shaped recipe** combining rare drops or resources.  
-Example:
-
-\`\`\`
- G 
-R E R
- G 
-\`\`\`
-
-- **G** = Gem base material  
-- **R** = Rare drop  
-- **E** = Essence (could be an enchanted item or special ingredient)  
-
-*(Specific gem recipes are configurable via config.yml if implemented.)*
+- Gems can be used for crafting, potions, or as special items
 
 ---
 
 ## Installation
 
 1. Download \`MysticalGems.jar\`  
-2. Place it in your server’s \`/plugins\` folder  
-3. Start or restart the server  
-4. Gems are now available for crafting or in loot tables  
-
----
-
-## Configuration
-
-- Optional \`config.yml\` for custom recipes and gem effects  
-- You can enable/disable specific gems or change crafting ingredients  
-
----
-
-## Compatibility
-
-- Paper 1.21.7 (tested)  
-- Spigot 1.21.7 (should work)  
-- Works on vanilla servers  
+2. Place it in `/plugins`  
+3. Restart server
 
 ---
 
 ## License
 
-MIT License – free to use, modify, and distribute.
-
----
-
-## Support
-
-For questions, bug reports, or contributions:  
-- Open an issue or pull request on the repository  
-- Contact the author directly
-
----
-
-**Enjoy discovering and using magical gems!** ✨💎
-    `
+MIT License
+`
   },
   {
     name: "ExtendedInventory",
     version: "1.0",
-    readme: `
-# ExtendedInventory – Expand Your Inventory
+    readme: `# ExtendedInventory – Expand Your Inventory
 
 **Version:** 1.0  
 **Minecraft:** Paper 1.21.7  
@@ -220,66 +108,29 @@ For questions, bug reports, or contributions:
 
 ## Description
 
-ExtendedInventory allows players to carry **more items** by adding additional inventory slots.  
-Perfect for survival servers that want to give players more storage without mods.
+Adds extra inventory slots for players.  
 
 ---
 
 ## Features
 
-- Adds **extra inventory slots**  
-- Compatible with Paper and Spigot  
-- Lightweight and optimized for performance  
-- No client mods required  
-
----
-
-## Crafting Example
-
-- No crafting required, slots are added automatically  
-- Inventory expansion can be configured via plugin commands or config.yml if implemented  
+- More inventory slots  
+- Works on vanilla Paper/Spigot servers  
 
 ---
 
 ## Installation
 
 1. Download \`ExtendedInventory.jar\`  
-2. Place it in your server’s \`/plugins\` folder  
-3. Restart the server  
-4. Players now have extended inventory slots  
-
----
-
-## Configuration
-
-- Optional config.yml to adjust slot count or permissions  
-- Admin commands may be implemented to grant extra slots to players  
-
----
-
-## Compatibility
-
-- Paper 1.21.7 (tested)  
-- Spigot 1.21.7 (should work)  
+2. Place it in `/plugins`  
+3. Restart server
 
 ---
 
 ## License
 
-MIT License – free to use, modify, and distribute.
-
----
-
-## Support
-
-For questions, bug reports, or contributions:  
-- Open an issue or pull request on the repository  
-- Contact the author directly
-
----
-
-**Enjoy your new inventory slots!** 🧰✨
-    `
+MIT License
+`
   }
 ];
 ---
@@ -305,43 +156,35 @@ For questions, bug reports, or contributions:
   overflow-x: auto;
 }
 
-.plugin-readme h1 {
-  color: #ffcc00;
-  font-size: 1.8rem;
-  margin-top: 1rem;
-}
+.plugin-readme h1 { color: #ffcc00; font-size: 1.8rem; margin-top: 1rem; }
+.plugin-readme h2 { color: #ff9900; font-size: 1.5rem; margin-top: 1rem; }
+.plugin-readme h3 { color: #ff6600; font-size: 1.3rem; margin-top: 0.8rem; }
 
-.plugin-readme h2 {
-  color: #ff9900;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-}
+.plugin-readme a { color: #00ccff; text-decoration: underline; }
+.plugin-readme ul, .plugin-readme ol { margin-left: 1.5rem; margin-bottom: 1rem; }
 
-.plugin-readme h3 {
-  color: #ff6600;
-  font-size: 1.3rem;
-  margin-top: 0.8rem;
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #00f2ff, #ff00f2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
 }
-
-.plugin-readme a {
-  color: #00ccff;
-  text-decoration: underline;
-}
-
-.plugin-readme ul, .plugin-readme ol {
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
-}
+.back-button:hover { transform: scale(1.05); }
 </style>
 
 <Layout title="Minecraft Plugin Help">
+  <a href="/plugins" class="back-button">⬅ Back to Plugins</a>
   <h1>Plugin Help</h1>
 
   {plugins.map(plugin => (
     <article>
       <h2>{plugin.name} <small>v{plugin.version}</small></h2>
       <div class="plugin-readme">
-        <Markdown>{plugin.readme}</Markdown>
+        <Markdown content={plugin.readme} />
       </div>
     </article>
   ))}
