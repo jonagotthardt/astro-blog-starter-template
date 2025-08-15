@@ -87,10 +87,37 @@ const plugins = [
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(255, 0, 242, 0.6);
     }
+
+    /* Button zu Plugins-Help */
+    .help-button {
+      display: inline-block;
+      margin: 1.5em auto;
+      padding: 0.8em 1.5em;
+      background-color: #ff9900;
+      color: #1e1e1e;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .help-button:hover {
+      background-color: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    .button-container {
+      text-align: center;
+    }
   </style>
 
   <h1>My Minecraft Plugins</h1>
   <p>Here you can directly download my plugins as <code>.jar</code> files:</p>
+
+  <!-- Button zur Help-Seite -->
+  <div class="button-container">
+    <a href="/plugins-help" class="help-button">📖 Plugin Help Page</a>
+  </div>
 
   <ul>
     {plugins.map(plugin => (
