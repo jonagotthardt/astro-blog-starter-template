@@ -4,101 +4,100 @@ import Layout from "../layouts/BlogPost.astro";
 const plugins = [
   {
     name: "Mystical Gems",
-    description: "Magische Edelsteine mit einzigartigen Fähigkeiten – perfekt für Survival, RPG & Abenteuer-Server.",
+    description: "Magical gems with unique abilities – perfect for Survival, RPG & Adventure servers.",
     file: "/downloads/MysticGems-1.0.5-1.21.7.jar"
   },
   {
     name: "Extended Inventory",
-    description: "Erweitertes Inventar für Paper-Server, mit dem du jederzeit /inv verwenden kannst.",
+    description: "Expanded inventory for Paper servers, allowing you to access /inv anytime.",
     file: "/downloads/extendedinventory-1.0.7.jar"
   },
   {
     name: "AllMobEggs",
-    description: "Craftet alle Spawn-Eier (vanilla & Mod-Mobs) auf Paper 1.21.7.",
+    description: "Craft all spawn eggs (vanilla & modded mobs) on Paper 1.21.7.",
     file: "/downloads/AllMobEggs-1.0.jar"
   }
 ];
 ---
 
-<Layout title="Plugins herunterladen">
+<Layout title="Download My Plugins">
+  <h1>My Minecraft Plugins</h1>
+  <p>Here you can download my plugins directly as <code>.jar</code> files:</p>
+
+  <div class="plugin-grid">
+    {plugins.map(plugin => (
+      <div class="plugin-card">
+        <h2>{plugin.name}</h2>
+        <p>{plugin.description}</p>
+        <a class="download-btn" href={plugin.file} download>
+          <span>📥 Download</span>
+        </a>
+      </div>
+    ))}
+  </div>
+
   <style>
     h1 {
       text-align: center;
       font-size: 2.5rem;
-      background: linear-gradient(90deg, #00f2ff, #ff00f2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5em;
+      margin-bottom: 1.5rem;
     }
 
-    p {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 2em;
-    }
-
-    ul {
+    .plugin-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5em;
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    li {
-      background: rgba(0,0,0,0.4);
+    .plugin-card {
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      padding: 1.5em;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      backdrop-filter: blur(6px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    li:hover {
+    .plugin-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
 
-    h2 {
-      font-size: 1.5rem;
-      color: #fff;
-      margin-bottom: 0.5em;
+    .plugin-card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
     }
 
-    li p {
-      color: #bbb;
+    .plugin-card p {
       font-size: 1rem;
-      margin-bottom: 1.2em;
+      opacity: 0.85;
+      margin-bottom: 1.2rem;
     }
 
-    a {
+    .download-btn {
       display: inline-block;
-      padding: 0.6em 1.2em;
-      background: linear-gradient(90deg, #00f2ff, #ff00f2);
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
       color: white;
-      font-weight: bold;
+      text-align: center;
       border-radius: 8px;
+      font-weight: bold;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.4s ease, transform 0.2s ease;
     }
 
-    a:hover {
+    .download-btn:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
       transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 0, 242, 0.6);
+    }
+
+    .download-btn span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
   </style>
-
-  <h1>Meine Minecraft-Plugins</h1>
-  <p>Hier kannst du meine Plugins direkt als <code>.jar</code> herunterladen:</p>
-
-  <ul>
-    {plugins.map(plugin => (
-      <li>
-        <h2>{plugin.name}</h2>
-        <p>{plugin.description}</p>
-        <a href={plugin.file} download>📥 Direkt herunterladen</a>
-      </li>
-    ))}
-  </ul>
 </Layout>
