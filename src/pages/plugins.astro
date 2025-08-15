@@ -24,80 +24,13 @@ const plugins = [
   <h1>My Minecraft Plugins</h1>
   <p>Here you can download my plugins directly as <code>.jar</code> files:</p>
 
-  <div class="plugin-grid">
+  <ul>
     {plugins.map(plugin => (
-      <div class="plugin-card">
+      <li>
         <h2>{plugin.name}</h2>
         <p>{plugin.description}</p>
-        <a class="download-btn" href={plugin.file} download>
-          <span>📥 Download</span>
-        </a>
-      </div>
+        <a href={plugin.file} download>📥 Direct Download</a>
+      </li>
     ))}
-  </div>
-
-  <style>
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .plugin-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .plugin-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 1.5rem;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .plugin-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-    }
-
-    .plugin-card h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .plugin-card p {
-      font-size: 1rem;
-      opacity: 0.85;
-      margin-bottom: 1.2rem;
-    }
-
-    .download-btn {
-      display: inline-block;
-      width: 100%;
-      padding: 0.75rem;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      text-align: center;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.4s ease, transform 0.2s ease;
-    }
-
-    .download-btn:hover {
-      background: linear-gradient(90deg, #0072ff, #00c6ff);
-      transform: scale(1.05);
-    }
-
-    .download-btn span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  </style>
+  </ul>
 </Layout>
