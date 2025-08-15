@@ -1,78 +1,152 @@
 ---
-import Layout from "../layouts/BlogPost.astro";
-import AllMobEggs from '../content/AllMobEggs.md';
-import MysticalGems from '../content/MysticalGems.md';
-import ExtendedInventory from '../content/ExtendedInventory.md';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import CookieBanner from '../components/CookieBanner.astro';
 ---
 
-<Layout title="Plugins Help">
-  <div class="help-page">
-    <h1>Plugins Help</h1>
+<html lang="en">
+<head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+        }
 
-    <section>
-      <h2>All Mob Eggs</h2>
-      <AllMobEggs class="markdown" />
-    </section>
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 5s ease infinite;
+            text-align: center;
+            margin-top: 2rem;
+        }
 
-    <section>
-      <h2>Mystical Gems</h2>
-      <MysticalGems class="markdown" />
-    </section>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    <section>
-      <h2>Extended Inventory</h2>
-      <ExtendedInventory class="markdown" />
-    </section>
-  </div>
+        section {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px rgba(0,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
 
-  <style>
-    .help-page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      color: #333;
-      font-family: Arial, sans-serif;
-    }
+        h2 {
+            font-size: 2rem;
+            color: #00ffff;
+            border-bottom: 2px solid #00ffff;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
 
-    .help-page h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+        pre {
+            background: rgba(255,255,255,0.05);
+            color: #00ffff;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <Header />
 
-    .help-page h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
+    <main>
+        <h1>Plugins Help</h1>
 
-    .markdown {
-      line-height: 1.6;
-    }
+        <section>
+            <h2>MysticalGems</h2>
+            <pre>
+Version: 1.0
+Minecraft: Paper 1.21.7
+Author: Jona Gotthardt
 
-    /* Hervorgehobene Boxen */
-    .markdown strong,
-    .markdown code {
-      background-color: #f0f0f0; /* hellgrau */
-      color: #000; /* schwarze Schrift */
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
+Description:
+Magical gems with unique abilities for survival and RPG servers.
 
-    .markdown code {
-      font-family: monospace;
-    }
+Features:
+- Adds magical gems with custom powers
+- Gems can be used for crafting, potions, or as special items
 
-    .markdown hr {
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 2rem 0;
-    }
+Installation:
+1. Download MysticalGems.jar
+2. Place it in /plugins
+3. Restart server
 
-    .markdown img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 1rem 0;
-    }
-  </style>
-</Layout>
+License:
+MIT License
+            </pre>
+        </section>
+
+        <section>
+            <h2>ExtendedInventory</h2>
+            <pre>
+Version: 1.0
+Minecraft: Paper 1.21.7
+Author: Jona Gotthardt
+
+Description:
+Adds extra inventory slots for Players via /inv.
+
+Features:
+- More inventory Slots via a 52 Slot Large GUI-Inventory
+- Works on vanilla Paper/Spigot servers
+
+Installation:
+1. Download ExtendedInventory.jar
+2. Place it in /plugins
+3. Restart server
+
+License:
+MIT License
+            </pre>
+        </section>
+
+        <section>
+            <h2>AllMobEggs</h2>
+            <pre>
+Version: 2.0
+Minecraft: Paper 1.21.7
+Author: Jona Gotthardt
+
+Description:
+AllMobEggs is a lightweight Paper plugin that adds custom crafting recipes for many vanilla spawn eggs.
+Each spawn egg can be crafted using a chicken egg and a mob-specific drop.
+
+Features:
+- Adds fixed crafting recipes for multiple vanilla mobs
+- Recipes are automatically unlocked on player join
+- /eggrecipes command
+
+Installation:
+1. Download AllMobEggs.jar
+2. Place it in /plugins
+3. Restart server
+
+License:
+MIT License
+            </pre>
+        </section>
+    </main>
+
+    <Footer />
+    <CookieBanner />
+</body>
+</html>
