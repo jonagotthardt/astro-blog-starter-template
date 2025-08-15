@@ -1,13 +1,11 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
-import { Markdown } from '@astrojs/markdown-remark';
-
 import AllMobEggs from '../content/AllMobEggs.md';
 import MysticalGems from '../content/MysticalGems.md';
 import ExtendedInventory from '../content/ExtendedInventory.md';
 
 const plugins = [
-  { name: "AllMobEggs", version: "2.0", md: AllMobEggs },
+  { name: "AllMobEggs", version: "4.0", md: AllMobEggs },
   { name: "MysticalGems", version: "1.0", md: MysticalGems },
   { name: "ExtendedInventory", version: "1.0", md: ExtendedInventory }
 ];
@@ -62,7 +60,7 @@ const plugins = [
     <article>
       <h2>{plugin.name} <small>v{plugin.version}</small></h2>
       <div class="plugin-readme">
-        <Markdown content={plugin.md} />
+        <plugin.md />  <!-- <-- einfach die Markdown-Komponente direkt rendern -->
       </div>
     </article>
   ))}
