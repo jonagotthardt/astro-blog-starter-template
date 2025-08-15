@@ -1,137 +1,14 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
 import Markdown from '@astrojs/markdown-remark';
+import AllMobEggs from '../content/AllMobEggs.md';
+import MysticalGems from '../content/MysticalGems.md';
+import ExtendedInventory from '../content/ExtendedInventory.md';
 
 const plugins = [
-  {
-    name: "AllMobEggs",
-    version: "4.0",
-    readme: `# AllMobEggs – Craft Spawn Eggs Easily
-
-**Version:** 4.0  
-**Minecraft:** Paper 1.21.7  
-**Author:** Jona Gotthardt
-
----
-
-## Description
-
-AllMobEggs is a lightweight Paper plugin that adds **custom crafting recipes** for many vanilla spawn eggs.  
-Each spawn egg can be crafted using a **chicken egg** and a mob-specific drop.  
-
----
-
-## Features
-
-- Adds **fixed crafting recipes** for multiple vanilla mobs
-- Recipes are **automatically unlocked** on player join
-- `/eggrecipes` command
-
----
-
-## Crafting Example
-
-Zombie Spawn Egg:
-
-\`\`\`
- E 
- I 
-   
-E = Chicken Egg  
-I = Rotten Flesh
-\`\`\`
-
-*(See source code for full list.)*
-
----
-
-## Installation
-
-1. Download \`AllMobEggs.jar\`  
-2. Place it in `/plugins`  
-3. Restart server  
-
----
-
-## License
-
-MIT License
-`
-  },
-  {
-    name: "MysticalGems",
-    version: "1.0",
-    readme: `# MysticalGems – Magical Gems for Minecraft
-
-**Version:** 1.0  
-**Minecraft:** Paper 1.21.7  
-**Author:** Jona Gotthardt
-
----
-
-## Description
-
-Magical gems with unique abilities for survival and RPG servers.
-
----
-
-## Features
-
-- Adds **magical gems** with custom powers  
-- Gems can be used for crafting, potions, or as special items
-
----
-
-## Installation
-
-1. Download \`MysticalGems.jar\`  
-2. Place it in `/plugins`  
-3. Restart server
-
----
-
-## License
-
-MIT License
-`
-  },
-  {
-    name: "ExtendedInventory",
-    version: "1.0",
-    readme: `# ExtendedInventory – Expand Your Inventory
-
-**Version:** 1.0  
-**Minecraft:** Paper 1.21.7  
-**Author:** Jona Gotthardt
-
----
-
-## Description
-
-Adds extra inventory slots for players.  
-
----
-
-## Features
-
-- More inventory slots  
-- Works on vanilla Paper/Spigot servers  
-
----
-
-## Installation
-
-1. Download \`ExtendedInventory.jar\`  
-2. Place it in `/plugins`  
-3. Restart server
-
----
-
-## License
-
-MIT License
-`
-  }
+  { name: "AllMobEggs", version: "4.0", md: AllMobEggs },
+  { name: "MysticalGems", version: "1.0", md: MysticalGems },
+  { name: "ExtendedInventory", version: "1.0", md: ExtendedInventory }
 ];
 ---
 
@@ -156,13 +33,6 @@ MIT License
   overflow-x: auto;
 }
 
-.plugin-readme h1 { color: #ffcc00; font-size: 1.8rem; margin-top: 1rem; }
-.plugin-readme h2 { color: #ff9900; font-size: 1.5rem; margin-top: 1rem; }
-.plugin-readme h3 { color: #ff6600; font-size: 1.3rem; margin-top: 0.8rem; }
-
-.plugin-readme a { color: #00ccff; text-decoration: underline; }
-.plugin-readme ul, .plugin-readme ol { margin-left: 1.5rem; margin-bottom: 1rem; }
-
 .back-button {
   display: inline-block;
   margin-bottom: 2rem;
@@ -184,7 +54,7 @@ MIT License
     <article>
       <h2>{plugin.name} <small>v{plugin.version}</small></h2>
       <div class="plugin-readme">
-        <Markdown content={plugin.readme} />
+        <Markdown content={plugin.md} />
       </div>
     </article>
   ))}
