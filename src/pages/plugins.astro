@@ -21,6 +21,74 @@ const plugins = [
 ---
 
 <Layout title="Plugins herunterladen">
+  <style>
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00f2ff, #ff00f2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 2em;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5em;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background: rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 1.5em;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.5em;
+    }
+
+    li p {
+      color: #bbb;
+      font-size: 1rem;
+      margin-bottom: 1.2em;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.6em 1.2em;
+      background: linear-gradient(90deg, #00f2ff, #ff00f2);
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 242, 0.6);
+    }
+  </style>
+
   <h1>Meine Minecraft-Plugins</h1>
   <p>Hier kannst du meine Plugins direkt als <code>.jar</code> herunterladen:</p>
 
