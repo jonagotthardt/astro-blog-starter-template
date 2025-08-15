@@ -1,94 +1,78 @@
 ---
 import Layout from "../layouts/BlogPost.astro";
-
-const plugins = [
-  {
-    name: "AllMobEggs",
-    version: "2.0",
-    description: `
-<p>AllMobEggs is a lightweight Paper plugin that adds <strong>custom crafting recipes</strong> for many vanilla spawn eggs.</p>
-
-<ul>
-<li>Adds <strong>fixed crafting recipes</strong> for multiple vanilla mobs</li>
-<li>Recipes are <strong>automatically unlocked</strong> on player join</li>
-<li>/eggrecipes command</li>
-</ul>
-
-<h3>Crafting Example</h3>
-<pre><code> E 
- I 
-
-E = Chicken Egg  
-I = Rotten Flesh
-</code></pre>
-
-<h3>Installation</h3>
-<ol>
-<li>Download AllMobEggs.jar</li>
-<li>Place it in /plugins</li>
-<li>Restart server</li>
-</ol>
-`
-  },
-  {
-    name: "MysticalGems",
-    version: "1.0",
-    description: `
-<p>Magical gems with unique abilities for survival and RPG servers.</p>
-
-<ul>
-<li>Adds <strong>magical gems</strong> with custom powers</li>
-<li>Gems can be used for crafting, potions, or as special items</li>
-</ul>
-
-<h3>Installation</h3>
-<ol>
-<li>Download MysticalGems.jar</li>
-<li>Place it in /plugins</li>
-<li>Restart server</li>
-</ol>
-`
-  }
-];
+import AllMobEggs from '../content/AllMobEggs.md';
+import MysticalGems from '../content/MysticalGems.md';
+import ExtendedInventory from '../content/ExtendedInventory.md';
 ---
 
-<style>
-.plugin-readme {
-  background-color: #1e1e1e; /* dunkler Hintergrund */
-  color: #f5f5f5;           /* helle Schrift */
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  max-height: 600px;
-  overflow-y: auto;
-}
-.plugin-readme pre {
-  background-color: #1e1e2f; /* dunkle Codebox */
-  color: #f8f8f2;
-  padding: 1rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-family: 'Fira Code', monospace;
-}
-.plugin-readme code {
-  background-color: #2d2d44; /* inline code */
-  color: #f8f8f2;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-}
-.plugin-readme strong { 
-  background-color: #3a3a5c; /* hervorgehobene Wörter */
-  padding: 0.1rem 0.3rem; 
-  border-radius: 3px; 
-}
-</style>
+<Layout title="Plugins Help">
+  <div class="help-page">
+    <h1>Plugins Help</h1>
 
-<Layout title="Minecraft Plugin Help">
-  <h1>Plugin Help</h1>
-  {plugins.map(plugin => (
-    <article>
-      <h2>{plugin.name} <small>v{plugin.version}</small></h2>
-      <div class="plugin-readme" innerHTML={plugin.description}></div>
-    </article>
-  ))}
+    <section>
+      <h2>All Mob Eggs</h2>
+      <AllMobEggs class="markdown" />
+    </section>
+
+    <section>
+      <h2>Mystical Gems</h2>
+      <MysticalGems class="markdown" />
+    </section>
+
+    <section>
+      <h2>Extended Inventory</h2>
+      <ExtendedInventory class="markdown" />
+    </section>
+  </div>
+
+  <style>
+    .help-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .help-page h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .help-page h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .markdown {
+      line-height: 1.6;
+    }
+
+    /* Hervorgehobene Boxen */
+    .markdown strong,
+    .markdown code {
+      background-color: #f0f0f0; /* hellgrau */
+      color: #000; /* schwarze Schrift */
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .markdown code {
+      font-family: monospace;
+    }
+
+    .markdown hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2rem 0;
+    }
+
+    .markdown img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem 0;
+    }
+  </style>
 </Layout>
