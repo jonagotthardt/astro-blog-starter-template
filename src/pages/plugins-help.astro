@@ -6,144 +6,89 @@ const plugins = [
     name: "AllMobEggs",
     version: "2.0",
     description: `
-AllMobEggs is a lightweight Paper plugin that adds **custom crafting recipes** for many vanilla spawn eggs.  
-Each spawn egg can be crafted using a **chicken egg** and a mob-specific drop.
+<p>AllMobEggs is a lightweight Paper plugin that adds <strong>custom crafting recipes</strong> for many vanilla spawn eggs.</p>
 
-- Adds **fixed crafting recipes** for multiple vanilla mobs
-- Recipes are **automatically unlocked** on player join
-- /eggrecipes command
+<ul>
+<li>Adds <strong>fixed crafting recipes</strong> for multiple vanilla mobs</li>
+<li>Recipes are <strong>automatically unlocked</strong> on player join</li>
+<li>/eggrecipes command</li>
+</ul>
 
-### Crafting Example
-
-\`\`\`
- E 
+<h3>Crafting Example</h3>
+<pre><code> E 
  I 
-   
+
 E = Chicken Egg  
 I = Rotten Flesh
-\`\`\`
-*(See source code for full list.)*
+</code></pre>
 
-### Installation
-
-1. Download AllMobEggs.jar  
-2. Place it in /plugins  
-3. Restart server
-    `
+<h3>Installation</h3>
+<ol>
+<li>Download AllMobEggs.jar</li>
+<li>Place it in /plugins</li>
+<li>Restart server</li>
+</ol>
+`
   },
   {
     name: "MysticalGems",
     version: "1.0",
     description: `
-Magical gems with unique abilities for survival and RPG servers.
+<p>Magical gems with unique abilities for survival and RPG servers.</p>
 
-- Adds **magical gems** with custom powers  
-- Gems can be used for crafting, potions, or as special items
+<ul>
+<li>Adds <strong>magical gems</strong> with custom powers</li>
+<li>Gems can be used for crafting, potions, or as special items</li>
+</ul>
 
-### Installation
-
-1. Download MysticalGems.jar  
-2. Place it in /plugins  
-3. Restart server
-    `
-  },
-  {
-    name: "ExtendedInventory",
-    version: "1.0",
-    description: `
-Adds extra inventory slots for players.
-
-- More inventory slots  
-- Works on vanilla Paper/Spigot servers  
-
-### Installation
-
-1. Download ExtendedInventory.jar  
-2. Place it in /plugins  
-3. Restart server
-    `
+<h3>Installation</h3>
+<ol>
+<li>Download MysticalGems.jar</li>
+<li>Place it in /plugins</li>
+<li>Restart server</li>
+</ol>
+`
   }
 ];
 ---
 
 <style>
 .plugin-readme {
-  background-color: #1e1e1e;  /* dunkler Hintergrund */
-  color: #f5f5f5;             /* Standardtext hell */
+  background-color: #1e1e1e; /* dunkler Hintergrund */
+  color: #f5f5f5;           /* helle Schrift */
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 2rem;
   max-height: 600px;
   overflow-y: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-/* Große Codeblöcke */
 .plugin-readme pre {
-  background-color: #1e1e2f;
+  background-color: #1e1e2f; /* dunkle Codebox */
   color: #f8f8f2;
   padding: 1rem;
   border-radius: 6px;
   overflow-x: auto;
   font-family: 'Fira Code', monospace;
-  font-size: 0.95em;
-  margin: 1rem 0;
 }
-
-/* Inline-Code */
 .plugin-readme code {
-  background-color: #2d2d44;
+  background-color: #2d2d44; /* inline code */
   color: #f8f8f2;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  font-family: 'Fira Code', monospace;
 }
-
-/* Hervorhebungen */
-.plugin-readme strong {
-  background-color: #3a3a5c;
-  padding: 0.1rem 0.3rem;
-  border-radius: 3px;
+.plugin-readme strong { 
+  background-color: #3a3a5c; /* hervorgehobene Wörter */
+  padding: 0.1rem 0.3rem; 
+  border-radius: 3px; 
 }
-
-/* Überschriften */
-.plugin-readme h1 { color: #ffcc00; font-size: 1.8rem; margin-top: 1rem; }
-.plugin-readme h2 { color: #ff9900; font-size: 1.5rem; margin-top: 1rem; }
-.plugin-readme h3 { color: #ff6600; font-size: 1.3rem; margin-top: 0.8rem; }
-
-/* Links */
-.plugin-readme a { color: #00ccff; text-decoration: underline; }
-
-/* Listen */
-.plugin-readme ul, .plugin-readme ol {
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Zurück-Button */
-.back-button {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(90deg, #00f2ff, #ff00f2);
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
-.back-button:hover { transform: scale(1.05); }
 </style>
 
 <Layout title="Minecraft Plugin Help">
-  <a href="/plugins" class="back-button">⬅ Back to Plugins</a>
   <h1>Plugin Help</h1>
-
   {plugins.map(plugin => (
     <article>
       <h2>{plugin.name} <small>v{plugin.version}</small></h2>
-      <div class="plugin-readme">
-        <Markdown content={plugin.description} />
-      </div>
+      <div class="plugin-readme" innerHTML={plugin.description}></div>
     </article>
   ))}
 </Layout>
