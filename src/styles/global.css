@@ -113,7 +113,7 @@ hr {
 
 
 /* Mobile Anpassung */
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   body {
     font-size: clamp(12px, 3.5vw, 14px); /* kleinerer Body-Text */
     line-height: 1.5;
