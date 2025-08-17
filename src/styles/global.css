@@ -47,7 +47,7 @@ body {
 }
 
 main {
-  width: 640px;
+  width: 720px;
   max-width: calc(100% - 2em);
   margin: auto;
   padding: 3em 1em;
@@ -111,24 +111,39 @@ hr {
   border-top: 1px solid rgb(var(--gray-light));
 }
 
+
 /* Mobile Anpassung */
 @media (max-width: 720px) {
   body {
-    font-size: clamp(14px, 4vw, 16px);
-    line-height: 1.6;
+    font-size: clamp(12px, 3.5vw, 14px); /* kleinerer Body-Text */
+    line-height: 1.5;
   }
-  h1 { font-size: clamp(1.8em, 6vw, 2.2em); }
-  h2 { font-size: clamp(1.5em, 5vw, 1.8em); }
-  h3 { font-size: clamp(1.3em, 4.5vw, 1.5em); }
-  h4 { font-size: clamp(1.1em, 4vw, 1.3em); }
-  h5 { font-size: clamp(1em, 3.5vw, 1.1em); }
+
+  h1 { font-size: clamp(1.5em, 5vw, 2em); }
+  h2 { font-size: clamp(1.3em, 4.5vw, 1.6em); }
+  h3 { font-size: clamp(1.1em, 4vw, 1.4em); }
+  h4 { font-size: clamp(1em, 3.5vw, 1.2em); }
+  h5 { font-size: clamp(0.9em, 3vw, 1em); }
+
   main {
     padding: 1em;
+    width: 100%;
   }
+
   pre {
-    font-size: clamp(0.8rem, 3vw, 0.9rem);
-    padding: 1em;
+    font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+    padding: 0.8em;
     overflow-x: auto;
+  }
+
+  textarea,
+  input {
+    font-size: 14px;
+  }
+
+  blockquote {
+    font-size: clamp(1em, 3.5vw, 1.2em);
+    padding-left: 16px;
   }
 }
 
