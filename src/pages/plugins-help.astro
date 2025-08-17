@@ -122,26 +122,82 @@ MIT License
         <section>
             <h2>AllMobEggs</h2>
             <pre>
-Version: 2.0
-Minecraft: Paper 1.21.7
-Author: Jona Gotthardt
+
+**Version:** 2.3.2
+**Minecraft API:** 1.21
 
 Description:
-AllMobEggs is a lightweight Paper plugin that adds custom crafting recipes for many vanilla spawn eggs.
-Each spawn egg can be crafted using a chicken egg and a mob-specific drop.
+
+AllMobEggs adds **spawn eggs for all standard mobs**, crafted with **custom ingredients**.  
+Players can craft the eggs, while admins can edit recipes via a GUI.
 
 Features:
-- Adds fixed crafting recipes for multiple vanilla mobs
-- Recipes are automatically unlocked on player join
-- /eggrecipes command
+
+- Craft spawn eggs for all players
+- `/eggrecipes` shows all recipes in chat
+- `/newegg` opens a GUI to edit/add eggs (Admins only)
+- Placeholders for mobs without a recipe
+- Ingredient selection directly in the inventory
+- Config-based recipes (`config.yml`)
+
+Commands:
+
+| Command       | Description                                           | Permission       |
+|---------------|-------------------------------------------------------|----------------|
+| `/eggrecipes` | Shows all spawn egg recipes in chat                   | allmobeggs.view |
+| `/newegg`     | Opens the GUI to edit/add spawn eggs                 | allmobeggs.edit |
+| `/allmobeggs help` | Shows this help message with crafting instructions | allmobeggs.view |
+
+Crafting Instructions:
+
+1. Each spawn egg is crafted using **a regular egg** and a **mob-specific ingredient**.
+2. Example ingredient mappings (default recipes):
+
+| Mob        | Ingredient     |
+|------------|----------------|
+| Cow        | Raw Beef       |
+| Pig        | Porkchop       |
+| Sheep      | White Wool     |
+| Chicken    | Feather        |
+| Horse      | Saddle         |
+| Wolf       | Bone           |
+| Villager   | Emerald        |
+| Bee        | Honeycomb      |
+| Panda      | Bamboo         |
+| Zombie     | Rotten Flesh   |
+| Skeleton   | Arrow          |
+| Creeper    | Gunpowder      |
+| Spider     | String         |
+| Enderman   | Ender Pearl    |
+| Slime      | Slime Block    |
+| Witch      | Cauldron       |
+
+3. Crafting Pattern:
+
+   E = Egg
+   I = Ingredient
+
+[   ] [ E ] [   ]
+[   ] [ I ] [   ]
+[   ] [   ] [   ]
+
+- All players can craft these eggs **without any special permissions**.  
+- Ingredients can be modified via the GUI `/newegg` (Admins only).
+
+Permissions:
+
+| Permission         | Description                        | Default       |
+|-------------------|------------------------------------|---------------|
+| allmobeggs.view     | Allows using `/eggrecipes` and help command | true          |
+| allmobeggs.edit     | Allows using `/newegg` GUI         | op            |
+| allmobeggs.craft    | Allows crafting all spawn eggs     | true          |
 
 Installation:
-1. Download AllMobEggs.jar
-2. Place it in /plugins
-3. Restart server
 
-License:
-MIT License
+1. Place the plugin in the `/plugins/` folder  
+2. Start the server → `config.yml` will be created automatically  
+3. Use `/newegg`, `/eggrecipes`, or `/allmobeggs help`  
+4. `README.md` is saved in the plugin folder for further reference
             </pre>
         </section>
     </main>
