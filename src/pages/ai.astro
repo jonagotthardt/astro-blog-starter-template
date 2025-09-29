@@ -1,0 +1,104 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="CommunitySMP • AI" description="Chat with the CommunitySMP AI" />
+    <style>
+      .wrap { max-width: 820px; margin: 2rem auto; padding: 1rem; }
+      .card {
+        background: rgba(0,0,0,.35);
+        border-radius: 14px;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        backdrop-filter: blur(6px);
+      }
+      h1 { text-align: center; margin-bottom: .5rem; }
+      .sub { text-align:center; opacity:.8; margin-bottom: 1rem; }
+      .chat {
+        display:flex; flex-direction:column; gap:.75rem; max-height: 55vh; overflow:auto;
+        padding:.5rem; border-radius:10px; background: rgba(255,255,255,.04);
+      }
+      .msg { padding:.6rem .8rem; border-radius:10px; line-height:1.35; white-space:pre-wrap; }
+      .user { align-self:flex-end; background:#1d3144; }
+      .ai   { align-self:flex-start;  background:#212022; }
+      form { display:flex; gap:.5rem; margin-top: .8rem; }
+      textarea {
+        flex:1; min-height: 70px; max-height: 160px; resize: vertical;
+        border:none; border-radius:10px; padding:.75rem; outline:none;
+      }
+      button {
+        border:none; border-radius:10px; padding:.75rem 1rem; cursor:pointer;
+        background:#00bcd4; color:white; font-weight:600; min-width:120px;
+        transition: transform .06s ease, opacity .2s ease, background .2s ease;
+      }
+      button:hover { background:#03a9bd; }
+      button:disabled { opacity:.65; cursor: not-allowed; transform:none; }
+      .hint { font-size:.9rem; opacity:.8; margin-top:.25rem; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <Header />
+
+    <main class="wrap">
+      <div class="card">
+        <h1>🤖 CommunitySMP AI</h1>
+        <div class="sub">Ask anything about CommunitySMP (rules, IP, downloads, events …)</div>
+
+        <div id="chat" class="chat" aria-live="polite"></div>
+
+        <form id="chatForm">
+          <textarea id="prompt" placeholder="Type your question…" required></textarea>
+          <button id="sendBtn" type="submit">Send</button>
+        </form>
+        <div class="hint">Powered by Cloudflare Workers AI</div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      const chat = document.getElementById('chat');
+      const form = document.getElementById('chatForm');
+      const promptEl = document.getElementById('prompt');
+      const sendBtn = document.getElementById('sendBtn');
+
+      function addMsg(text, who='ai') {
+        const div = document.createElement('div');
+        div.className = `msg ${who}`;
+        div.textContent = text;
+        chat.appendChild(div);
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const q = promptEl.value.trim();
+        if (!q) return;
+        addMsg(q, 'user');
+        promptEl.value = '';
+        sendBtn.disabled = true;
+        addMsg('…thinking…', 'ai');
+
+        try {
+          const res = await fetch('/api/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: q })
+          });
+          const data = await res.json();
+          // ersetze Placeholder „…thinking…“
+          chat.lastChild.textContent = data.reply || 'No reply received.';
+        } catch (err) {
+          chat.lastChild.textContent = '⚠️ Error fetching reply.';
+          console.error(err);
+        } finally {
+          sendBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
