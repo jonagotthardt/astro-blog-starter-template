@@ -22,7 +22,7 @@ export const onRequestPost: PagesFunction = async ({ request, env }) => {
     const MODEL = '@cf/meta/llama-3.1-8b-instruct';
 
     // Dein API-Token kommt als ENV-Variable (nie im Code hardcoden!)
-    const token = (env as any).CF_API_TOKEN as string;
+    const token = "AqPQ0K_VG-QjAnB8x6uW1f_k6KEngqgXQQIVZCT5";
     if (!token) {
       return new Response(JSON.stringify({ error: 'Missing CF_API_TOKEN env' }), {
         status: 500,
