@@ -3,344 +3,163 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import CookieBanner from '../components/CookieBanner.astro';
-
-const serverIP = "communitysmp.de";
-const discordLink = "https://discord.gg/Js3c3ynRRd";
+import { plugins } from '../data/plugins';
 ---
 
 <html lang="en">
-<head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <head>
+    <BaseHead title="Jona's Plugins" description={SITE_DESCRIPTION} />
     <style>
-        /* -------------------- Grundlayout -------------------- */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* -------------------- Header -------------------- */
-        header {
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientAnimation 5s ease infinite;
-            text-shadow: 0 0 20px rgba(0,255,255,0.7);
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        p {
-            font-size: 1.4rem;
-            margin-top: 15px;
-            color: #ccc;
-            text-shadow: 0 0 10px rgba(0,255,255,0.3);
-        }
-
-        /* -------------------- IP Box -------------------- */
-        .ip-box {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px 40px;
-            border-radius: 15px;
-            margin-top: 30px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            position: relative;
-            font-weight: bold;
-            color: #00ffff;
-            box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
-            transition: all 0.3s ease;
-        }
-
-        .ip-box:hover {
-            transform: scale(1.05);
-            background: rgba(0, 255, 255, 0.2);
-            color: #ff00ff;
-        }
-
-        .copy-popup {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #00ffff;
-            color: black;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            box-shadow: 0 0 15px #00ffff99;
-        }
-
-        .copy-popup.show {
-            opacity: 1;
-        }
-
-        /* -------------------- Sections -------------------- */
-        section {
-            max-width: 900px;
-            margin: 70px auto;
-            padding: 40px;
-            text-align: center;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.05);
-            box-shadow: 0 0 40px rgba(0,255,255,0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.6s ease, opacity 0.6s ease;
-        }
-
-        h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid #00ffff;
-            display: inline-block;
-            padding-bottom: 8px;
-            margin-bottom: 25px;
-            color: #00ffff;
-        }
-
-        ul, ol {
-            text-align: left;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* -------------------- Buttons -------------------- */
-        .discord-btn, .apply-btn {
-            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffea00);
-            padding: 18px 40px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-            font-size: 1.2rem;
-            display: inline-block;
-            margin-top: 25px;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
-        }
-
-        .discord-btn:hover, .apply-btn:hover {
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ffea00);
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 0 30px #ff00ffbb, 0 0 60px #00ffffaa;
-        }
-
-        /* -------------------- About Section -------------------- */
-        .about-section {
-            text-align: left;
-            line-height: 1.7;
-        }
-
-        .about-section h3 {
-            color: #00ffff;
-            margin-top: 25px;
-            font-size: 1.6rem;
-        }
-
-        .about-section strong {
-            color: #ffffff;
-        }
-
-        .emoji-title {
-            font-size: 1.6rem;
-        }
-
-        /* -------------------- Animations -------------------- */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* -------------------- Particles Background -------------------- */
-        .particles {
-            position: fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
+      header.hero {
+        padding: 80px 20px 40px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3.2rem;
+        margin: 0;
+        background: linear-gradient(90deg, #00ff9c, #00bcd4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      p.subtitle {
+        font-size: 1.2rem;
+        opacity: 0.85;
+        margin-top: 10px;
+      }
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-top: 60px;
+        font-size: 2rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+      .card {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        padding: 20px;
+        transition: 0.25s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(6px);
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        background: rgba(0, 0, 0, 0.55);
+      }
+      .card h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+      }
+      .card p {
+        opacity: 0.85;
+        font-size: 1rem;
+        margin: 0.4rem 0 0.8rem;
+      }
+      .features {
+        list-style: disc;
+        margin: 0.5rem 0 1rem 1.2rem;
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+      .meta {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+      .links a {
+        display: inline-block;
+        margin-right: 8px;
+        padding: 7px 13px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .btn {
+        background: #00bcd4;
+        color: white;
+      }
+      .btn:hover {
+        background: #0097a7;
+      }
+      .ghost {
+        border: 1px solid #00bcd4;
+        color: #00bcd4;
+      }
+      .ghost:hover {
+        background: #00bcd4;
+        color: white;
+      }
+      .about {
+        max-width: 700px;
+        margin: 50px auto 20px;
+        text-align: center;
+        opacity: 0.9;
+      }
+      footer {
+        margin-top: 60px;
+      }
     </style>
-</head>
-<body>
-    <div class="particles" id="particles"></div>
+  </head>
+
+  <body>
     <Header />
 
-    <main style="position: relative; z-index: 1;">
-        <header class="animate-on-scroll">
-            <h1>CommunitySMP</h1>
-            <p>Your Minecraft server for fun, community & adventures!</p>
-            <div class="ip-box" id="copyIP" data-ip={serverIP}>
-                🌐 IP: {serverIP}
-                <span class="copy-popup" id="copyPopup">IP copied!</span>
+    <header class="hero">
+      <h1>Jona’s Plugins</h1>
+      <p class="subtitle">
+        Creating lightweight, modern and performance-optimized plugins for Minecraft.
+      </p>
+    </header>
+
+    <section class="about">
+      <p>
+        Welcome to my development hub! I’m <strong>Jona Gotthardt</strong> — a passionate
+        plugin developer and designer focused on making creative, balanced, and
+        well-optimized experiences for both Java and Bedrock players.
+      </p>
+      <p>
+        Here you can explore my latest projects, see what I’m currently working on,
+        and discover upcoming ideas. Everything is built with care and attention to detail.
+      </p>
+    </section>
+
+    <section>
+      <h2>My Projects</h2>
+      <div class="grid">
+        {plugins.map((p) => (
+          <div class="card">
+            <h3>{p.title}</h3>
+            <p>{p.short}</p>
+            <ul class="features">
+              {p.features.slice(0, 3).map((f) => <li>{f}</li>)}
+            </ul>
+            <p class="meta">Version {p.version} • MC {p.mcVersions.join(', ')}</p>
+            <div class="links">
+              {p.links.github && <a href={p.links.github} class="ghost" target="_blank">GitHub</a>}
+              {p.links.modrinth && <a href={p.links.modrinth} class="ghost" target="_blank">Modrinth</a>}
+              {p.links.download && <a href={p.links.download} class="btn">Learn more</a>}
             </div>
-        </header>
+          </div>
+        ))}
+      </div>
+    </section>
 
-        <section class="animate-on-scroll">
-            <h2>Rules</h2>
-            <ul>
-                <li>No griefing or stealing</li>
-                <li>Be respectful to others</li>
-                <li>No hacks or unfair mods</li>
-                <li>Build and have fun!</li>
-            </ul>
-        </section>
-
-        <section class="animate-on-scroll">
-            <h2>Team</h2>
-            <ul>
-                <li>Owner: Jona Gotthardt</li>
-                <li>Admin: <a href="/apply" class="apply-btn">Apply Now!</a></li>
-                <li>Moderators: <a href="/apply" class="apply-btn">Apply Now!</a></li>
-            </ul>
-        </section>
-
-        <section class="animate-on-scroll">
-            <h2>Community</h2>
-            <a href={discordLink} class="discord-btn">💬 Join our Discord</a>
-        </section>
-
-        <section class="about-section animate-on-scroll">
-            <p class="emoji-title">🎮 <strong>Welcome to the CommunitySMP – Free for Everyone!</strong></p>
-            <p>
-                Hey there! 👋 Looking for a fun Minecraft world where <strong>everyone is welcome</strong>,
-                with no payments, no paywalls – just pure survival fun? Then you’ve just found your new home! 🏡
-            </p>
-            <p>
-                Our CommunitySMP is a friendly place for both <strong>Java</strong> and <strong>Bedrock</strong> players to
-                build, explore, and survive together. Whether you want to start a cozy village, go on epic adventures,
-                or just hang out with friends – there’s a place for you here.
-            </p>
-
-            <h3>🌍 Server Details</h3>
-            <ul>
-                <li>✨ <strong>IP:</strong> communitysmp.de</li>
-                <li>✨ <strong>Version:</strong> 1.21.8</li>
-                <li>✨ <strong>Bedrock Port:</strong> 20274</li>
-                <li>✨ Works for Java & Bedrock</li>
-                <li>✨ Type: Survival Multiplayer (SMP) with community rules</li>
-            </ul>
-
-            <h3>🔥 Why join us?</h3>
-            <ul>
-                <li>Completely free – no ranks to buy, no hidden fees</li>
-                <li>A friendly & respectful community</li>
-                <li>Events & group projects to keep things exciting</li>
-                <li>Open 24/7 so you can play whenever you want</li>
-            </ul>
-
-            <h3>⚡ How to Join</h3>
-            <ol>
-                <li>Open Minecraft (Java or Bedrock)</li>
-                <li>Go to “Multiplayer” (Java) or “Servers” (Bedrock)</li>
-                <li>Add our IP address</li>
-                <li>Click “Join” and start your adventure! 🚀</li>
-            </ol>
-        </section>
-    </main>
+    <section>
+      <h2>What’s Next</h2>
+      <p style="text-align:center; opacity:0.85;">
+        I’m currently experimenting with new utility plugins and QoL tools for 1.21.9+.
+        Stay tuned for something exciting — it’s just the beginning.
+      </p>
+    </section>
 
     <Footer />
-    <CookieBanner />
-
-    <script>
-        // Copy IP
-        const copyBtn = document.getElementById("copyIP");
-        const popup = document.getElementById("copyPopup");
-
-        copyBtn.addEventListener("click", async () => {
-            const ip = copyBtn.getAttribute("data-ip");
-            try {
-                await navigator.clipboard.writeText(ip);
-                popup.classList.add("show");
-                setTimeout(() => popup.classList.remove("show"), 1500);
-            } catch (err) {
-                console.error("Error copying IP: ", err);
-            }
-        });
-
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('section, header').forEach(el => {
-            el.classList.add('animate-on-scroll');
-            observer.observe(el);
-        });
-
-        // Particles background
-        const canvas = document.createElement('canvas');
-        document.getElementById('particles').appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-        let w = canvas.width = window.innerWidth;
-        let h = canvas.height = window.innerHeight;
-
-        let particles = [];
-        for (let i=0;i<100;i++) {
-            particles.push({
-                x: Math.random()*w,
-                y: Math.random()*h,
-                r: Math.random()*3+1,
-                d: Math.random()*1
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0,0,w,h);
-            ctx.fillStyle = 'rgba(0,255,255,0.7)';
-            ctx.beginPath();
-            for (let i=0;i<particles.length;i++){
-                let p = particles[i];
-                ctx.moveTo(p.x,p.y);
-                ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
-            }
-            ctx.fill();
-            update();
-        }
-
-        function update(){
-            for (let i=0;i<particles.length;i++){
-                let p = particles[i];
-                p.y += 0.2;
-                if(p.y>h){p.y=0;p.x=Math.random()*w;}
-            }
-        }
-
-        setInterval(draw,30);
-        window.addEventListener('resize',()=>{w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;});
-    </script>
-</body>
+  </body>
 </html>
