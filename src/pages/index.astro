@@ -3,16 +3,16 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { plugins } from '../data/plugins';
+import { plugins } from './plugins';
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title="Jona's Plugins" description={SITE_DESCRIPTION} />
+    <BaseHead title="Jona Gotthardt • Plugin Developer" description={SITE_DESCRIPTION} />
     <style>
       header.hero {
-        padding: 80px 20px 40px;
         text-align: center;
+        padding: 90px 20px 40px;
       }
       h1 {
         font-size: 3.2rem;
@@ -20,54 +20,70 @@ import { plugins } from '../data/plugins';
         background: linear-gradient(90deg, #00ff9c, #00bcd4);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        animation: shimmer 6s infinite linear;
+        background-size: 200% auto;
+      }
+      @keyframes shimmer {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
       }
       p.subtitle {
         font-size: 1.2rem;
         opacity: 0.85;
-        margin-top: 10px;
+        margin-top: 12px;
       }
-      section {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 20px;
+
+      section.about {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 0 20px;
+        text-align: center;
+        line-height: 1.6;
+        opacity: 0.9;
       }
+      section.about strong {
+        color: #00bcd4;
+      }
+
       h2 {
         text-align: center;
-        margin-top: 60px;
+        margin-top: 80px;
         font-size: 2rem;
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 25px;
-        margin-top: 30px;
+        margin: 40px auto 10px;
+        max-width: 1100px;
+        padding: 0 20px;
       }
       .card {
         background: rgba(0, 0, 0, 0.4);
         border-radius: 12px;
         padding: 20px;
-        transition: 0.25s ease;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(6px);
+        transition: transform 0.25s ease, background 0.25s ease;
       }
       .card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-5px);
         background: rgba(0, 0, 0, 0.55);
       }
       .card h3 {
-        margin-top: 0;
         font-size: 1.5rem;
+        margin: 0 0 8px;
       }
       .card p {
         opacity: 0.85;
         font-size: 1rem;
-        margin: 0.4rem 0 0.8rem;
+        margin-bottom: 10px;
       }
       .features {
         list-style: disc;
         margin: 0.5rem 0 1rem 1.2rem;
-        font-size: 0.95rem;
         opacity: 0.9;
+        font-size: 0.95rem;
       }
       .meta {
         font-size: 0.9rem;
@@ -97,14 +113,22 @@ import { plugins } from '../data/plugins';
         background: #00bcd4;
         color: white;
       }
-      .about {
-        max-width: 700px;
-        margin: 50px auto 20px;
+      .viewall {
         text-align: center;
-        opacity: 0.9;
+        margin-top: 40px;
       }
+      .viewall a {
+        color: #00bcd4;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .viewall a:hover {
+        color: #00e5ff;
+      }
+
       footer {
-        margin-top: 60px;
+        margin-top: 70px;
       }
     </style>
   </head>
@@ -113,28 +137,25 @@ import { plugins } from '../data/plugins';
     <Header />
 
     <header class="hero">
-      <h1>Jona’s Plugins</h1>
-      <p class="subtitle">
-        Creating lightweight, modern and performance-optimized plugins for Minecraft.
-      </p>
+      <h1>Jona Gotthardt</h1>
+      <p class="subtitle">Plugin Developer • Creator • Innovator</p>
     </header>
 
     <section class="about">
       <p>
-        Welcome to my development hub! I’m <strong>Jona Gotthardt</strong> — a passionate
-        plugin developer and designer focused on making creative, balanced, and
-        well-optimized experiences for both Java and Bedrock players.
+        Hey! I’m <strong>Jona Gotthardt</strong>, a passionate developer who builds custom Minecraft
+        plugins and creative systems designed for both <strong>Java</strong> and <strong>Bedrock</strong>.
       </p>
       <p>
-        Here you can explore my latest projects, see what I’m currently working on,
-        and discover upcoming ideas. Everything is built with care and attention to detail.
+        My goal is to make plugins that are <strong>lightweight</strong>, <strong>highly optimized</strong>,
+        and fun to use — always with quality, balance, and creativity in mind.
       </p>
     </section>
 
     <section>
-      <h2>My Projects</h2>
+      <h2>Latest Projects</h2>
       <div class="grid">
-        {plugins.map((p) => (
+        {plugins.slice(0, 3).map((p) => (
           <div class="card">
             <h3>{p.title}</h3>
             <p>{p.short}</p>
@@ -145,18 +166,25 @@ import { plugins } from '../data/plugins';
             <div class="links">
               {p.links.github && <a href={p.links.github} class="ghost" target="_blank">GitHub</a>}
               {p.links.modrinth && <a href={p.links.modrinth} class="ghost" target="_blank">Modrinth</a>}
-              {p.links.download && <a href={p.links.download} class="btn">Learn more</a>}
+              <a href="/plugins" class="btn">View Project</a>
             </div>
           </div>
         ))}
       </div>
+
+      <div class="viewall">
+        <a href="/plugins">→ View all plugins</a>
+      </div>
     </section>
 
-    <section>
+    <section class="about">
       <h2>What’s Next</h2>
-      <p style="text-align:center; opacity:0.85;">
-        I’m currently experimenting with new utility plugins and QoL tools for 1.21.9+.
-        Stay tuned for something exciting — it’s just the beginning.
+      <p>
+        I’m working on new creative ideas for 1.21.9+ — including utility packs, server enhancements,
+        and unique gameplay mechanics that push Minecraft’s limits even further.
+      </p>
+      <p>
+        Follow along to see what’s coming next. Every project is built to inspire creativity and fun.
       </p>
     </section>
 
