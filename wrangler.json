@@ -10,5 +10,12 @@
   "observability": {
     "enabled": true
   },
+    
+ "r2_buckets": [
+  {
+   "binding": "DOWNLOADS",
+   "bucket_name": "downloads"
+  }
+],
   "upload_source_maps": true
 }
