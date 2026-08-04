@@ -8,12 +8,12 @@ const showOnLoad = true;
       <strong>We use essential cookies</strong>
       <p>
         This site uses essential cookies and a small local consent flag to make the form and basic features work.
-        By clicking “Accept” you agree to this. Read more in our <a href="/privacy">Privacy Policy</a>.
+        By clicking “Accept” you agree to this. Read more in our <a href={`${import.meta.env.BASE_URL}privacy`}>Privacy Policy</a>.
       </p>
     </div>
     <div class="cookie-actions">
       <button id="cookie-accept" class="btn-accept">Accept</button>
-      <a href="/datenschutz" class="btn-more">Privacy</a>
+      <a href={`${import.meta.env.BASE_URL}datenschutz`} class="btn-more">Privacy</a>
     </div>
   </div>
 
