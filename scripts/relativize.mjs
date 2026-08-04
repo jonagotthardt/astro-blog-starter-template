@@ -22,7 +22,13 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.resolve(__dirname, "..", "dist");
 
-const ATTR_RE = /\b(href|src)="(\/[^"/][^"]*)"/g;
+// Matches href="/..." or the bare href="/", but not protocol-relative
+// href="//host/..." (negative lookahead blocks a second leading slash).
+// "value" is included for the language-switch <option value="/..."> in
+// Header.astro (its onchange handler does `location = this.value`, which
+// resolves exactly like an href); the only "value" attributes emitted by
+// this site's own templates are those two options, so this is safe.
+const ATTR_RE = /\b(href|src|value)="(\/(?!\/)[^"]*)"/g;
 
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -55,7 +61,11 @@ async function processFile(file) {
   let changed = 0;
   const rewritten = original.replace(ATTR_RE, (match, attr, value) => {
     changed++;
-    return `${attr}="${prefix}${value.slice(1)}"`;
+    const rel = `${prefix}${value.slice(1)}`;
+    // An empty result (bare "/" rewritten at depth 0) is technically a
+    // valid "current document" href, but "./" is unambiguous and reads
+    // better in markup/devtools.
+    return `${attr}="${rel === "" ? "./" : rel}"`;
   });
   if (changed > 0) {
     await writeFile(file, rewritten, "utf8");

@@ -1,5 +1,8 @@
 ---
 const today = new Date();
+// See Header.astro for why these are root-absolute rather than "./relative".
+const isDe = Astro.url.pathname === '/de' || Astro.url.pathname.startsWith('/de/');
+const prefix = isDe ? '/de' : '';
 ---
 
 <footer>
@@ -7,8 +10,8 @@ const today = new Date();
     <div class="footer-left">
       <p>&copy; {today.getFullYear()} BuildMC Launcher – Jona Gotthardt. All rights reserved.</p>
       <nav class="legal-links" aria-label="Legal">
-        <a href="./terms">Nutzungsbedingungen</a>
-        <a href="./privacy">Datenschutz</a>
+        <a href={`${prefix}/terms`}>Nutzungsbedingungen</a>
+        <a href={`${prefix}/privacy`}>Datenschutz</a>
       </nav>
     </div>
 

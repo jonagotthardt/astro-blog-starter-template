@@ -1,36 +1,50 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+
+// Links here are root-absolute (not "./relative") on purpose: this component
+// is included on pages at every nesting depth (/, /downloads, /de/downloads,
+// ...), and a relative "./downloads" resolves differently - and wrongly -
+// depending on which page it's rendered on (e.g. "./downloads" clicked while
+// already on /downloads/ goes to /downloads/downloads). scripts/relativize.mjs
+// rewrites these root-absolute paths into depth-correct relative ones at
+// build time, so they work under any deploy prefix too.
+const isDe = Astro.url.pathname === '/de' || Astro.url.pathname.startsWith('/de/');
+const prefix = isDe ? '/de' : '';
+const homeHref = isDe ? '/de' : '/';
+const otherLangHref = isDe
+  ? Astro.url.pathname.replace(/^\/de/, '') || '/'
+  : `/de${Astro.url.pathname === '/' ? '' : Astro.url.pathname}`;
 ---
 
 <header>
   <nav>
-    <h2 class="logo"><a href="./">{SITE_TITLE}</a></h2>
+    <h2 class="logo"><a href={homeHref}>{SITE_TITLE}</a></h2>
 
     <!-- Normale Links für große Bildschirme -->
     <div class="internal-links">
-      <HeaderLink href="./">Home</HeaderLink>
-      <HeaderLink href="./downloads">Downloads</HeaderLink>
-      <HeaderLink href="./terms">Nutzungsbedingungen</HeaderLink>
-      <HeaderLink href="./privacy">Datenschutz</HeaderLink>
+      <HeaderLink href={homeHref}>Home</HeaderLink>
+      <HeaderLink href={`${prefix}/downloads`}>Downloads</HeaderLink>
+      <HeaderLink href={`${prefix}/terms`}>Nutzungsbedingungen</HeaderLink>
+      <HeaderLink href={`${prefix}/privacy`}>Datenschutz</HeaderLink>
     </div>
 
     <!-- Dropdown Menü für kleine Bildschirme -->
     <div class="menu-dropdown">
       <button class="menu-btn" aria-label="Menu">Menu ▾</button>
       <div class="menu-content">
-        <a href="./">Home</a>
-        <a href="./downloads">Downloads</a>
-        <a href="./terms">Nutzungsbedingungen</a>
-        <a href="./privacy">Datenschutz</a>
+        <a href={homeHref}>Home</a>
+        <a href={`${prefix}/downloads`}>Downloads</a>
+        <a href={`${prefix}/terms`}>Nutzungsbedingungen</a>
+        <a href={`${prefix}/privacy`}>Datenschutz</a>
       </div>
     </div>
 
     <!-- Sprachwechsel -->
     <div class="language-switch">
       <select onchange="location = this.value;">
-        <option value="./" selected>EN</option>
-        <option value="./de">DE</option>
+        <option value={isDe ? otherLangHref : Astro.url.pathname} selected={!isDe}>EN</option>
+        <option value={isDe ? Astro.url.pathname : otherLangHref} selected={isDe}>DE</option>
       </select>
     </div>
 
