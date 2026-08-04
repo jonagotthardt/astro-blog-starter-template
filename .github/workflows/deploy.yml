@@ -27,8 +27,13 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build
+      - name: Build (custom domain, jonagotthardt.de)
         run: npm run build
+      - name: Build (GitHub Pages project URL, jonagotthardt.github.io/jona/)
+        run: npm run build -- --outDir dist/jona
+        env:
+          BASE_PATH: /jona/
+          SITE_URL: https://jonagotthardt.github.io/jona
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
