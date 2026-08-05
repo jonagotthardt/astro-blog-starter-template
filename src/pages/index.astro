@@ -4,8 +4,12 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import CookieBanner from '../components/CookieBanner.astro';
+import { getLatestRelease } from '../lib/github-releases';
 
 const discordInvite = "https://discord.gg/Js3c3ynRRd";
+const tarnoRelease = await getLatestRelease('jonagotthardt/tarno-public');
+const tarnoAsset = tarnoRelease?.assets.find((a) => a.name.toLowerCase().endsWith('.exe')) ?? null;
+const tarnoDownloadUrl = tarnoAsset?.url ?? "https://github.com/jonagotthardt/tarno-public/releases/latest";
 ---
 
 <html lang="en">
@@ -21,6 +25,31 @@ const discordInvite = "https://discord.gg/Js3c3ynRRd";
             <p>The custom Minecraft launcher built for modpacks, servers, and seamless multiplayer.</p>
             <a href="./downloads" class="btn btn-primary">Download Launcher</a>
             <a href="./downloads" class="btn btn-secondary">Browse Downloads</a>
+        </section>
+
+        <section class="promo-tarno">
+            <span class="promo-tarno-eyebrow">Also from us</span>
+            <div class="promo-tarno-grid">
+                <div>
+                    <div class="promo-tarno-heading">
+                        <img src="/tarno/icon.png" alt="" loading="lazy" width="56" height="56" />
+                        <h2>TARNO</h2>
+                    </div>
+                    <p class="promo-tarno-meta">{tarnoRelease?.tag ?? 'Beta'} · Windows</p>
+                    <p class="promo-tarno-tagline">A personal AI voice assistant for Windows, inspired by Jarvis — talk to it, and it gets things done.</p>
+                    <ul class="promo-tarno-features">
+                        <li>Native voice control: wake word, natural text-to-speech, and a live voice orb</li>
+                        <li>Choose your AI provider: bring your own key (Mistral, Claude, OpenAI, Gemini, Groq, …) or go fully local with Ollama</li>
+                        <li>Plugin integrations: Minecraft, Discord, Git, smart home, calendar & email</li>
+                        <li>Autonomous routines, reminders, and daily briefings</li>
+                        <li>Security-hardened: encryption, PII redaction, zero-trust content filtering</li>
+                    </ul>
+                    <a href={tarnoDownloadUrl} class="btn btn-primary">Download TARNO for Windows</a>
+                </div>
+                <div class="promo-tarno-media">
+                    <img src="/tarno/screenshot-chat.png" alt="TARNO chat: the assistant introduces itself and offers to read files, search the web, or write code" loading="lazy" width="1920" height="1032" />
+                </div>
+            </div>
         </section>
 
         <section>

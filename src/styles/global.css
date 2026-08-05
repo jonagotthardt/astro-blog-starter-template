@@ -264,6 +264,101 @@ hr {
   background: var(--accent-dark);
 }
 
+.promo-tarno {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 160% at 15% 0%, rgba(0, 188, 212, 0.22), transparent 55%), var(--surface-1);
+  border: 1px solid var(--accent-dark);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  box-shadow: var(--box-shadow);
+}
+
+.promo-tarno-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.promo-tarno-media img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--surface-2);
+  box-shadow: var(--box-shadow);
+}
+
+@media (max-width: 900px) {
+  .promo-tarno-grid {
+    grid-template-columns: 1fr;
+  }
+  .promo-tarno-media {
+    order: -1;
+  }
+}
+
+.promo-tarno-eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.promo-tarno-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.promo-tarno-heading img {
+  width: 56px;
+  height: 56px;
+}
+
+.promo-tarno-heading h2 {
+  margin: 0;
+  font-size: 2.6rem;
+}
+
+.promo-tarno-meta {
+  color: rgb(var(--gray));
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.promo-tarno-tagline {
+  font-size: 1.3rem;
+  max-width: 640px;
+  margin-bottom: 1.5rem;
+}
+
+.promo-tarno-features {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem 2rem;
+}
+
+.promo-tarno-features li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.promo-tarno-features li::before {
+  content: "✦";
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
 .game-showcase {
   display: grid;
   grid-template-columns: minmax(280px, 1.1fr) 1fr;
