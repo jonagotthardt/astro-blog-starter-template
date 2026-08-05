@@ -27,11 +27,18 @@ const tarnoDownloadUrl = tarnoAsset?.url ?? "https://github.com/jonagotthardt/ta
 
     <main>
         <section class="tarno-glass-hero">
-            <img src="/tarno/icon.png" alt="" loading="lazy" width="88" height="88" />
+            <span class="tarno-glass-eyebrow"><span class="dot"></span>TARNO · KI-Sprachassistent</span>
+            <div class="tarno-orb-stage">
+                <div class="tarno-orb">
+                    <div class="tarno-orb-core"></div>
+                </div>
+            </div>
             <h1>TARNO</h1>
             <p>{tarnoRelease?.tag ?? 'Beta'} · Windows — ein persönlicher KI-Sprachassistent, inspiriert von Jarvis. Einfach ansprechen, TARNO erledigt es.</p>
-            <a href={tarnoDownloadUrl} class="glass-btn">Für Windows herunterladen</a>
-            <a href="/de/downloads" class="glass-btn-secondary">Alle Downloads durchsuchen</a>
+            <div class="tarno-glass-hero-actions">
+                <a href={tarnoDownloadUrl} class="glass-btn">Für Windows herunterladen</a>
+                <a href="/de/downloads" class="glass-btn-secondary">Alle Downloads durchsuchen</a>
+            </div>
         </section>
 
         <div class="tarno-demo-chat glass-panel">
