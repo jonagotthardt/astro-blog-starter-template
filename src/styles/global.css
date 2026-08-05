@@ -264,6 +264,102 @@ hr {
   background: var(--accent-dark);
 }
 
+.game-showcase {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) 1fr;
+  gap: 2rem;
+  background: var(--surface-1);
+  border: 1px solid var(--surface-2);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  align-items: center;
+}
+
+.game-showcase-media {
+  position: relative;
+}
+
+.game-showcase-media img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--surface-2);
+  box-shadow: var(--box-shadow);
+}
+
+.game-showcase-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: -0.75rem;
+  background: var(--accent-gradient);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.game-showcase-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.game-showcase-heading img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid var(--surface-2);
+}
+
+.game-showcase-heading h3 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.game-showcase-meta {
+  color: rgb(var(--gray));
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.game-showcase-tagline {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.game-features {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.game-features li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  color: rgb(var(--gray-dark));
+}
+
+.game-features li::before {
+  content: "✦";
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .game-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
 .legal-page {
   background: var(--surface-1);
   border-radius: 16px;

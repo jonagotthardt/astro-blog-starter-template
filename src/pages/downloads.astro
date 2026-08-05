@@ -81,6 +81,31 @@ const categories = ['Modpacks', 'Plugins & Mods', 'Resource Packs', 'Tools', 'Ot
         </section>
 
         <section>
+            <h2>Games</h2>
+            <div class="game-showcase">
+                <div class="game-showcase-media">
+                    <span class="game-showcase-badge">New</span>
+                    <img src="/downloads/games/alchemie-laden/screenshot-shop.png" alt="Alchemie-Laden gameplay: a customer asks for an antidote while ingredients sit in the cauldron" loading="lazy" width="940" height="600" />
+                </div>
+                <div>
+                    <div class="game-showcase-heading">
+                        <img src="/downloads/games/alchemie-laden/icon.png" alt="" loading="lazy" width="48" height="48" />
+                        <h3>Alchemie-Laden</h3>
+                    </div>
+                    <p class="game-showcase-meta">v1.0.0 · Windows · ~29 MB</p>
+                    <p class="game-showcase-tagline">A cozy day-by-day potion shop sim. Brew the right recipe from magical ingredients before each customer's patience runs out.</p>
+                    <ul class="game-features">
+                        <li>Multi-day campaign plus an Endless mode with daily twists (locked ingredients, gold bonuses, and more)</li>
+                        <li>Kid Mode: a pressure-free learning phase and much more patience, built for younger players</li>
+                        <li>2-player online multiplayer — co-op or head-to-head</li>
+                        <li>Upgrades, achievements, and a streak bonus for back-to-back successes</li>
+                    </ul>
+                    <a href="https://github.com/jonagotthardt/Alchemie-Laden/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download for Windows</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
             {categories.map((category) => {
                 const items = files.filter((f) => f.category === category);
                 if (items.length === 0) return null;
