@@ -299,6 +299,22 @@ hr {
   }
 }
 
+@media (max-width: 480px) {
+  /* .promo-tarno has overflow:hidden (for the background glow), so text
+     wider than the card gets clipped instead of wrapping - "TARNO" was
+     showing as "TARN". Shrink padding/icon/heading so it always fits. */
+  .promo-tarno {
+    padding: 1.5rem;
+  }
+  .promo-tarno-heading img {
+    width: 40px;
+    height: 40px;
+  }
+  .promo-tarno-heading h2 {
+    font-size: 1.9rem;
+  }
+}
+
 .promo-tarno-eyebrow {
   display: inline-block;
   color: var(--accent);

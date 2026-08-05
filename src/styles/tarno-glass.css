@@ -1,0 +1,255 @@
+/*
+  Scoped "liquid glass" design for the /tarno page only - a testbed for
+  TARNO's own WinUI DesktopAcrylicBackdrop look (translucent, blurred,
+  layered) before considering it site-wide. Not imported by global.css on
+  purpose: this file only loads on pages that opt in via <TarnoGlassStyles />
+  (see src/pages/tarno.astro), so the rest of the site is untouched.
+*/
+
+body.tarno-glass {
+  background: #05060a;
+  overflow-x: hidden;
+}
+
+/* Soft blurred color blobs behind everything - this is what makes the
+   translucent panels actually read as "glass" instead of just gray boxes;
+   without something colorful underneath, backdrop-filter has nothing to
+   blur. Fixed so they stay put while the page scrolls. */
+.tarno-glass-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tarno-glass-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+
+.tarno-glass-blob.b1 {
+  width: 640px;
+  height: 640px;
+  top: -220px;
+  left: -160px;
+  background: radial-gradient(circle, #00bcd4, transparent 70%);
+}
+
+.tarno-glass-blob.b2 {
+  width: 720px;
+  height: 720px;
+  top: 20%;
+  right: -260px;
+  background: radial-gradient(circle, #7c3aed, transparent 70%);
+}
+
+.tarno-glass-blob.b3 {
+  width: 560px;
+  height: 560px;
+  bottom: -240px;
+  left: 20%;
+  background: radial-gradient(circle, #0ea5e9, transparent 70%);
+}
+
+/* Header override for this page only - a glass nav bar instead of the
+   solid purple-gradient one global.css gives every other page. */
+body.tarno-glass header {
+  background: rgba(10, 12, 20, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none !important;
+}
+
+.tarno-glass-hero {
+  text-align: center;
+  padding: 5rem 1rem 3rem;
+}
+
+.tarno-glass-hero img {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 40px rgba(0, 188, 212, 0.55));
+}
+
+.tarno-glass-hero h1 {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.tarno-glass-hero p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 620px;
+  margin: 0 auto 2rem;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.9), rgba(124, 58, 237, 0.9));
+  box-shadow: 0 8px 24px rgba(0, 188, 212, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 188, 212, 0.45);
+  color: white;
+}
+
+.glass-btn-secondary {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  margin-left: 1rem;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.glass-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Demo chat panel - a static, non-functional mockup of the real Chat view,
+   using placeholder sample messages to give visitors a feel for the UI. */
+.tarno-demo-chat {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+}
+
+.tarno-demo-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+}
+
+.tarno-demo-chat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+.tarno-demo-bubble {
+  max-width: 78%;
+  padding: 0.9rem 1.2rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.tarno-demo-bubble.user {
+  margin-left: auto;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.35), rgba(124, 58, 237, 0.35));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.tarno-demo-bubble.assistant {
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.88);
+  border-bottom-left-radius: 4px;
+}
+
+.tarno-glass-section {
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.tarno-glass-section h2 {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tarno-glass-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.tarno-glass-features .glass-panel {
+  padding: 1.5rem;
+}
+
+.tarno-glass-features h3 {
+  color: #22d3ee;
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+}
+
+.tarno-glass-features p {
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+.tarno-glass-cta {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  margin: 3rem auto 5rem;
+  max-width: 720px;
+}
+
+.tarno-glass-cta h2 {
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.tarno-glass-cta p {
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.75rem;
+}
+
+.tarno-glass-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .tarno-glass-hero h1 {
+    font-size: 2.4rem;
+  }
+  .tarno-demo-bubble {
+    max-width: 90%;
+  }
+}
