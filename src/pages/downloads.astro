@@ -6,6 +6,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import CookieBanner from '../components/CookieBanner.astro';
 import fs from 'fs';
 import path from 'path';
+import { getLatestRelease, platformLabel, formatBytes as formatReleaseBytes } from '../lib/github-releases';
+
+const buildmcRelease = await getLatestRelease('jonagotthardt/jona');
+const alchemieRelease = await getLatestRelease('jonagotthardt/Alchemie-Laden');
+const alchemieAsset = alchemieRelease?.assets.find((a) => a.name.toLowerCase().endsWith('.exe')) ?? null;
 
 interface DownloadFile {
   name: string;
@@ -68,15 +73,29 @@ const categories = ['Modpacks', 'Plugins & Mods', 'Resource Packs', 'Tools', 'Ot
 
         <section>
             <h2>BuildMC Launcher</h2>
-            <div class="download-item">
-                <div>
-                    <strong>BuildMC Launcher Installer</strong>
-                    <span style="display: block; color: rgb(var(--gray)); font-size: 0.9rem;">Windows & Linux setup</span>
+            {buildmcRelease && buildmcRelease.assets.length > 0 ? (
+                <div class="download-list">
+                    {buildmcRelease.assets.map((asset) => (
+                        <div class="download-item" key={asset.name}>
+                            <div>
+                                <strong>{platformLabel(asset.name)}</strong>
+                                <span style="display: block; color: rgb(var(--gray)); font-size: 0.9rem;">{buildmcRelease.tag} · {formatReleaseBytes(asset.size)}</span>
+                            </div>
+                            <a href={asset.url}>Download</a>
+                        </div>
+                    ))}
                 </div>
-                <a href="https://github.com/jonagotthardt/jona/releases/latest" target="_blank" rel="noopener noreferrer">Download on GitHub</a>
-            </div>
+            ) : (
+                <div class="download-item">
+                    <div>
+                        <strong>BuildMC Launcher Installer</strong>
+                        <span style="display: block; color: rgb(var(--gray)); font-size: 0.9rem;">Windows & Linux setup</span>
+                    </div>
+                    <a href="https://github.com/jonagotthardt/jona/releases/latest" target="_blank" rel="noopener noreferrer">Download on GitHub</a>
+                </div>
+            )}
             <p style="color: rgb(var(--gray));">
-                The installer is hosted on GitHub Releases due to GitHub Pages file size limits. Download the latest Installer there.
+                Installers are hosted on GitHub Releases due to GitHub Pages file size limits.
             </p>
         </section>
 
@@ -92,7 +111,7 @@ const categories = ['Modpacks', 'Plugins & Mods', 'Resource Packs', 'Tools', 'Ot
                         <img src="/downloads/games/alchemie-laden/icon.png" alt="" loading="lazy" width="48" height="48" />
                         <h3>Alchemie-Laden</h3>
                     </div>
-                    <p class="game-showcase-meta">v1.0.0 · Windows · ~29 MB</p>
+                    <p class="game-showcase-meta">{alchemieRelease?.tag ?? 'v1.0.0'} · Windows{alchemieAsset ? ` · ${formatReleaseBytes(alchemieAsset.size)}` : ' · ~29 MB'}</p>
                     <p class="game-showcase-tagline">A cozy day-by-day potion shop sim. Brew the right recipe from magical ingredients before each customer's patience runs out.</p>
                     <ul class="game-features">
                         <li>Multi-day campaign plus an Endless mode with daily twists (locked ingredients, gold bonuses, and more)</li>
@@ -100,7 +119,7 @@ const categories = ['Modpacks', 'Plugins & Mods', 'Resource Packs', 'Tools', 'Ot
                         <li>2-player online multiplayer — co-op or head-to-head</li>
                         <li>Upgrades, achievements, and a streak bonus for back-to-back successes</li>
                     </ul>
-                    <a href="https://github.com/jonagotthardt/Alchemie-Laden/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download for Windows</a>
+                    <a href={alchemieAsset?.url ?? "https://github.com/jonagotthardt/Alchemie-Laden/releases/latest"} class="btn btn-primary">Download for Windows</a>
                 </div>
             </div>
         </section>
