@@ -1,0 +1,91 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION } from '../consts';
+import CookieBanner from '../components/CookieBanner.astro';
+import { getLatestRelease } from '../lib/github-releases';
+import '../styles/tarno-glass.css';
+
+const tarnoRelease = await getLatestRelease('jonagotthardt/tarno-public');
+const tarnoAsset = tarnoRelease?.assets.find((a) => a.name.toLowerCase().endsWith('.exe')) ?? null;
+const tarnoDownloadUrl = tarnoAsset?.url ?? "https://github.com/jonagotthardt/tarno-public/releases/latest";
+---
+
+<html lang="en">
+<head>
+    <BaseHead title="TARNO – Personal AI Voice Assistant" description={SITE_DESCRIPTION} />
+</head>
+<body class="tarno-glass">
+    <div class="tarno-glass-backdrop">
+        <div class="tarno-glass-blob b1"></div>
+        <div class="tarno-glass-blob b2"></div>
+        <div class="tarno-glass-blob b3"></div>
+    </div>
+
+    <Header />
+
+    <main>
+        <section class="tarno-glass-hero">
+            <img src="/tarno/icon.png" alt="" loading="lazy" width="88" height="88" />
+            <h1>TARNO</h1>
+            <p>{tarnoRelease?.tag ?? 'Beta'} · Windows — a personal AI voice assistant inspired by Jarvis. Talk to it, and it gets things done.</p>
+            <a href={tarnoDownloadUrl} class="glass-btn">Download for Windows</a>
+            <a href="/downloads" class="glass-btn-secondary">Browse all downloads</a>
+        </section>
+
+        <div class="tarno-demo-chat glass-panel">
+            <div class="tarno-demo-chat-header">
+                <span class="tarno-demo-chat-dot"></span>
+                Sample conversation — not connected, just a preview
+            </div>
+            <div class="tarno-demo-bubble user">Hey TARNO, good morning</div>
+            <div class="tarno-demo-bubble assistant">Good morning! How can I help you today?</div>
+            <div class="tarno-demo-bubble user">Who exactly are you?</div>
+            <div class="tarno-demo-bubble assistant">I'm TARNO, your practical and polite AI assistant. I help with tasks, answer questions, and carry out instructions directly — always factual and respectful.</div>
+            <div class="tarno-demo-bubble user">Show me what you can do</div>
+            <div class="tarno-demo-bubble assistant">I can read and edit files, search the web for current info, launch programs on your computer, write code or track down bugs — and talk with you by voice if you'd rather not type. Want me to try one of those?</div>
+        </div>
+
+        <section class="tarno-glass-section">
+            <h2>What TARNO does</h2>
+            <div class="tarno-glass-features">
+                <div class="glass-panel">
+                    <h3>Native voice control</h3>
+                    <p>Wake word ("Hey TARNO"), natural text-to-speech, and a live voice orb — talk to it like an assistant, not a chatbot.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Your choice of AI</h3>
+                    <p>Bring your own API key (Mistral, Claude, OpenAI, Gemini, Groq, …) or go fully local with Ollama — no vendor lock-in.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Plugin integrations</h3>
+                    <p>Minecraft, Discord, Git, smart home, calendar & email — TARNO plugs into the tools you already use.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Autonomous extensions</h3>
+                    <p>Routines, reminders, and daily briefings that run on their own, not just reactive Q&A.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Coding agent, built in</h3>
+                    <p>An IDE-style workspace with its own coding agent, terminal, and file explorer — right inside the voice app.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Security-hardened</h3>
+                    <p>Encryption, PII redaction, and zero-trust content filtering baked in from the start, not bolted on after.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tarno-glass-cta glass-panel">
+            <h2>Ready to try it?</h2>
+            <p>Free installer, no account required. Bring your own API key or run fully local.</p>
+            <a href={tarnoDownloadUrl} class="glass-btn">Download TARNO for Windows</a>
+            <p class="tarno-glass-note">{tarnoAsset ? `${tarnoRelease?.tag} · ${tarnoAsset.name}` : 'Latest release on GitHub'}</p>
+        </section>
+    </main>
+
+    <Footer />
+    <CookieBanner />
+</body>
+</html>

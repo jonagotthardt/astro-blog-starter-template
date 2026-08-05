@@ -132,10 +132,39 @@ hr {
 }
 @media (max-width: 720px) {
   body {
-    font-size: 18px;
+    font-size: 16px;
   }
   main {
     padding: 1em;
+  }
+  /* Headings use em units off body font-size, which barely shrinks on its
+     own (20px -> 16px) - h1 was still ~54px on phones. Cut them down
+     directly instead of relying on the body-font cascade. */
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
+  .hero {
+    padding: 2.5rem 1.25rem;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1.05rem;
+  }
+  .btn {
+    padding: 0.8rem 1.4rem;
+  }
+  .btn-secondary {
+    display: inline-block;
+    margin-left: 0;
+    margin-top: 0.75rem;
   }
 }
 

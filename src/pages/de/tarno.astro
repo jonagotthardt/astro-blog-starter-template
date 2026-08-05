@@ -1,0 +1,91 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_DESCRIPTION } from '../../consts';
+import CookieBanner from '../../components/CookieBanner.astro';
+import { getLatestRelease } from '../../lib/github-releases';
+import '../../styles/tarno-glass.css';
+
+const tarnoRelease = await getLatestRelease('jonagotthardt/tarno-public');
+const tarnoAsset = tarnoRelease?.assets.find((a) => a.name.toLowerCase().endsWith('.exe')) ?? null;
+const tarnoDownloadUrl = tarnoAsset?.url ?? "https://github.com/jonagotthardt/tarno-public/releases/latest";
+---
+
+<html lang="de">
+<head>
+    <BaseHead title="TARNO – Persönlicher KI-Sprachassistent" description={SITE_DESCRIPTION} />
+</head>
+<body class="tarno-glass">
+    <div class="tarno-glass-backdrop">
+        <div class="tarno-glass-blob b1"></div>
+        <div class="tarno-glass-blob b2"></div>
+        <div class="tarno-glass-blob b3"></div>
+    </div>
+
+    <Header />
+
+    <main>
+        <section class="tarno-glass-hero">
+            <img src="/tarno/icon.png" alt="" loading="lazy" width="88" height="88" />
+            <h1>TARNO</h1>
+            <p>{tarnoRelease?.tag ?? 'Beta'} · Windows — ein persönlicher KI-Sprachassistent, inspiriert von Jarvis. Einfach ansprechen, TARNO erledigt es.</p>
+            <a href={tarnoDownloadUrl} class="glass-btn">Für Windows herunterladen</a>
+            <a href="/de/downloads" class="glass-btn-secondary">Alle Downloads durchsuchen</a>
+        </section>
+
+        <div class="tarno-demo-chat glass-panel">
+            <div class="tarno-demo-chat-header">
+                <span class="tarno-demo-chat-dot"></span>
+                Beispiel-Gespräch — keine echte Verbindung, nur eine Vorschau
+            </div>
+            <div class="tarno-demo-bubble user">Hallo, guten Morgen TARNO</div>
+            <div class="tarno-demo-bubble assistant">Guten Morgen! Wie kann ich dir heute helfen?</div>
+            <div class="tarno-demo-bubble user">Sag, wer bist du genau?</div>
+            <div class="tarno-demo-bubble assistant">Ich bin TARNO, dein praktischer und höflicher KI-Assistent. Ich helfe dir bei Aufgaben, beantworte Fragen und führe Anweisungen direkt aus – immer sachlich und respektvoll.</div>
+            <div class="tarno-demo-bubble user">Zeig kurz, was du kannst</div>
+            <div class="tarno-demo-bubble assistant">Ich kann Dateien lesen und bearbeiten, im Internet nach aktuellen Infos suchen, Programme auf deinem Rechner starten, Code schreiben oder Fehler finden – und mit dir per Sprache reden, wenn du nicht tippen möchtest. Soll ich dir eins davon zeigen?</div>
+        </div>
+
+        <section class="tarno-glass-section">
+            <h2>Was TARNO kann</h2>
+            <div class="tarno-glass-features">
+                <div class="glass-panel">
+                    <h3>Native Sprachsteuerung</h3>
+                    <p>Wake-Word ("Hey TARNO"), natürliche Text-zu-Sprache-Ausgabe und ein Live-Voice-Orb — TARNO wie einen echten Assistenten ansprechen, nicht wie einen Chatbot.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>KI-Anbieter frei wählbar</h3>
+                    <p>Eigener API-Key (Mistral, Claude, OpenAI, Gemini, Groq, …) oder komplett lokal über Ollama — keine Herstellerbindung.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Plugin-Integrationen</h3>
+                    <p>Minecraft, Discord, Git, Smart Home, Kalender & E-Mail — TARNO klinkt sich in Tools ein, die du eh schon nutzt.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Autonome Erweiterungen</h3>
+                    <p>Routinen, Erinnerungen und tägliche Briefings, die von selbst laufen — nicht nur reaktive Frage-Antwort.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Coding-Agent inklusive</h3>
+                    <p>Ein IDE-artiger Workspace mit eigenem Coding-Agent, Terminal und Datei-Explorer — direkt in der Voice-App.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3>Sicherheitsgehärtet</h3>
+                    <p>Verschlüsselung, PII-Redaktion und Zero-Trust-Content-Filter von Anfang an eingebaut, nicht nachträglich draufgesetzt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tarno-glass-cta glass-panel">
+            <h2>Lust, es auszuprobieren?</h2>
+            <p>Kostenloser Installer, kein Account nötig. Eigener API-Key oder komplett lokal.</p>
+            <a href={tarnoDownloadUrl} class="glass-btn">TARNO für Windows herunterladen</a>
+            <p class="tarno-glass-note">{tarnoAsset ? `${tarnoRelease?.tag} · ${tarnoAsset.name}` : 'Neuestes Release auf GitHub'}</p>
+        </section>
+    </main>
+
+    <Footer />
+    <CookieBanner />
+</body>
+</html>

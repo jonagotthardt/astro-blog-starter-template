@@ -19,12 +19,13 @@ const otherLangHref = isDe
 
 <header>
   <nav>
-    <h2 class="logo"><a href={homeHref}>{SITE_TITLE}</a></h2>
+    <h2 class="logo"><a href={homeHref}>{SITE_TITLE.split(' ')[0]}<span class="logo-suffix"> {SITE_TITLE.split(' ').slice(1).join(' ')}</span></a></h2>
 
     <!-- Normale Links für große Bildschirme -->
     <div class="internal-links">
       <HeaderLink href={homeHref}>Home</HeaderLink>
       <HeaderLink href={`${prefix}/downloads`}>Downloads</HeaderLink>
+      <HeaderLink href={`${prefix}/tarno`}>TARNO</HeaderLink>
       <HeaderLink href={`${prefix}/terms`}>Nutzungsbedingungen</HeaderLink>
       <HeaderLink href={`${prefix}/privacy`}>Datenschutz</HeaderLink>
     </div>
@@ -35,6 +36,7 @@ const otherLangHref = isDe
       <div class="menu-content">
         <a href={homeHref}>Home</a>
         <a href={`${prefix}/downloads`}>Downloads</a>
+        <a href={`${prefix}/tarno`}>TARNO</a>
         <a href={`${prefix}/terms`}>Nutzungsbedingungen</a>
         <a href={`${prefix}/privacy`}>Datenschutz</a>
       </div>
@@ -83,7 +85,7 @@ nav {
   margin: 0 auto;
 }
 
-.logo a { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+.logo a { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; white-space: nowrap; }
 
 .internal-links a {
   padding: 0.75rem 1rem;
@@ -130,6 +132,14 @@ nav {
 @media (max-width: 720px) {
   .internal-links { display: none; }
   .menu-dropdown { display: inline-block; }
+  .logo a { font-size: 1.15rem; }
+}
+
+/* Below this, even "BuildMC" + icons is tight - drop the second word of
+   the title entirely rather than let it wrap onto its own line (was
+   pushing the header to ~2x its normal height). */
+@media (max-width: 420px) {
+  .logo-suffix { display: none; }
 }
 </style>
 
